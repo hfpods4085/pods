@@ -1,0 +1,19 @@
+[project]
+name = "pods"
+version = "0.1.0"
+description = "Add your description here"
+authors = [{ name = "hfpods4085", email = "166705635+hfpods4085@users.noreply.github.com" }]
+dependencies = [
+    "requests>=2.31.0",
+    "xmltodict>=0.13.0",
+]
+readme = "README.md"
+requires-python = ">= 3.11"
+license = { text = "MIT" }
+
+[tool.rye]
+managed = true
+virtual = true
+dev-dependencies = [
+    "ipdb>=0.13.13",
+]

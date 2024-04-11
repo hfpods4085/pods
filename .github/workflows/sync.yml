@@ -1,0 +1,75 @@
+---
+name: Sync
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/sync.yml
+      - sync.py
+      - requirements.lock
+  schedule:
+    - cron: 17 * * * *
+
+permissions: write-all
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: eifinger/setup-rye@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          enable-cache: true
+
+      - name: Install packages
+        run: |-
+          rye config --set-bool behavior.use-uv=true
+          rye sync --no-dev
+
+      - name: Sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |-
+          gh release create audio --prerelease --notes audio --title audio > /dev/null 2>&1 || true
+          gh release download audio -D old  > /dev/null 2>&1 || true
+          python sync.py --remote-host ${{ secrets.PODS_AUDIO }} --remote-path podsync.opml --pod-type audio
+
+  video:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: eifinger/setup-rye@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          enable-cache: true
+
+      - name: Install packages
+        run: |-
+          rye config --set-bool behavior.use-uv=true
+          rye sync --no-dev
+
+      - name: Sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |-
+          gh release create video --prerelease --notes video --title video > /dev/null 2>&1 || true
+          gh release download video -D old  > /dev/null 2>&1 || true
+          python sync.py --remote-host ${{ secrets.PODS_VIDEO }} --remote-path podsync.opml --pod-type video
+
+  keepalive-job:
+    name: Keepalive Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: gautamkrishnar/keepalive-workflow@v2
