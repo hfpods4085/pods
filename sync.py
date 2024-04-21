@@ -34,13 +34,13 @@ class Pods:
         per_page = 100  # maximum is 100
         page = 1
         res = requests.get(
-            f"https://api.github.com/repos/{self.repo}/releases?per_page={per_page}&page={page}", headers=headers, timeout=5
+            f"https://api.github.com/repos/{self.repo}/releases?per_page={per_page}&page={page}", headers=headers, timeout=30
         ).json()
         all_releases.extend(res)
         while len(res) == per_page:
             page += 1
             res = requests.get(
-                f"https://api.github.com/repos/{self.repo}/releases?per_page={per_page}&page={page}", headers=headers, timeout=5
+                f"https://api.github.com/repos/{self.repo}/releases?per_page={per_page}&page={page}", headers=headers, timeout=30
             ).json()
             all_releases.extend(res)
 
@@ -48,7 +48,7 @@ class Pods:
 
     def parse_remote_opml(self) -> tuple[str, list]:
         url = f"https://{self.host}/{self.path}"
-        content = requests.get(url, timeout=5).text
+        content = requests.get(url, timeout=30).text
         feeds = re.findall(r'xmlUrl="([^"]+)"', content)
         return content, sorted(feeds)
 
@@ -57,6 +57,23 @@ class Pods:
         with open(f"{self.save_dir}/{self.path}", "w") as f:
             f.write(opml)
         return f"{self.save_dir}/{self.path}"
+
+    def is_same_opml(self, path: str) -> bool:
+        """Check if the new opml is the same as the old one.
+
+        Args:
+            path (str): new opml path
+
+        Returns:
+            bool: True if the same, False otherwise
+        """
+        old_path = f"{self.cache_dir}/{osp.basename(path)}"
+        with open(path) as f1, open(old_path) as f2:
+            new_opml = xmltodict.parse(f1.read())
+            old_opml = xmltodict.parse(f2.read())
+        new_links = {item["@xmlUrl"] for item in new_opml["opml"]["body"]["outline"]}
+        old_links = {item["@xmlUrl"] for item in old_opml["opml"]["body"]["outline"]}
+        return new_links == old_links
 
     @staticmethod
     def parse_url(url: str) -> tuple[str, str]:
@@ -67,7 +84,7 @@ class Pods:
 
     @staticmethod
     def check_external_url_exists(url) -> bool:
-        response = requests.head(url, timeout=5)
+        response = requests.head(url, timeout=30)
         if response.ok:
             print(f"OK [{response.status_code}]: external url exists")
             return True
@@ -83,7 +100,7 @@ class Pods:
             return save_path
         print(f"Downloading '{url}' to '{save_path}'...")
         # Send a GET request to the URL with streaming enabled
-        with requests.get(url, stream=True, timeout=5) as response:
+        with requests.get(url, stream=True, timeout=30) as response:
             # Check if the request was successful
             response.raise_for_status()  # This will raise an error for bad responses
             # Open a binary file in write mode
@@ -115,6 +132,7 @@ class Pods:
         items = xml_dict.get("rss", {}).get("channel", {}).get("item", [])
         items = [items] if isinstance(items, dict) else items  # single item
 
+        has_update = False  # check if any item needs to be updated
         for item in items:
             # change enclosure url to github asset url
             enclosure_url = item["enclosure"]["@url"]
@@ -127,6 +145,7 @@ class Pods:
                 item["enclosure"]["@url"] = github_asset_url
                 continue
 
+            has_update = True  # need to update
             print(f"Processing {channel_title} | {item['title']} | {item['link']}")
             enclosure_url = item["enclosure"]["@url"]
             enclosure_path = self.download_remote_file(enclosure_url)
@@ -134,8 +153,9 @@ class Pods:
             item["enclosure"]["@url"] = github_asset_url
 
         # save new feed
-        new_feed_path = self.save_new_feed_xml(channel, xml_dict)
-        self.upload_github(new_feed_path, self.pod_type, clean=False)
+        if has_update:
+            new_feed_path = self.save_new_feed_xml(channel, xml_dict)
+            self.upload_github(new_feed_path, self.pod_type, clean=False)
 
     def save_new_feed_xml(self, channel: str, feed_data: dict) -> str:
         feed_items = feed_data.get("rss", {}).get("channel", {}).get("item", [])
@@ -179,7 +199,9 @@ def main():
     pod = Pods(args.remote_host, args.remote_path, args.cache_dir, args.save_dir, args.pod_type)
     opml, feeds = pod.parse_remote_opml()
     revised_opml_path = pod.save_revise_opml(opml)
-    pod.upload_github(revised_opml_path, args.pod_type, clean=False)
+    if not pod.is_same_opml(revised_opml_path):  # check if same with old cache.
+        print(f"Uploading '{revised_opml_path}'")
+        pod.upload_github(revised_opml_path, args.pod_type, clean=False)
     for feed_url in feeds:
         print(f"Processing {feed_url}")
         pod.process_feed(feed_url)
