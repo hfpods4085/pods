@@ -8,8 +8,10 @@ on:
       - main
     paths:
       - .github/workflows/sync.yml
-      - sync.py
-      - requirements.lock
+      - config/**
+      - tubesync/main.py
+      - tubesync/refresh-opml.py
+      - requirements.txt
   schedule:
     - cron: 17 * * * *
 
@@ -19,53 +21,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  audio:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - uses: eifinger/setup-rye@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest
-          enable-cache: true
 
-      - name: Install packages
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install python packages
+        run: pip install -r requirements.txt
+
+      - name: Refresh OPML
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |-
-          rye config --set-bool behavior.use-uv=true
-          rye sync --no-dev
+          gh release download audio -D audio --clobber --pattern podsync.opml
+          gh release download video -D video --clobber --pattern podsync.opml
+          python tubesync/refresh-opml.py
 
       - name: Sync
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: |-
-          gh release create audio --prerelease --notes audio --title audio > /dev/null 2>&1 || true
-          gh release download audio -D old  > /dev/null 2>&1 || true
-          python sync.py --remote-host ${{ secrets.PODS_AUDIO }} --remote-path podsync.opml --pod-type audio
-
-  video:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@main
-      - uses: eifinger/setup-rye@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest
-          enable-cache: true
-
-      - name: Install packages
-        run: |-
-          rye config --set-bool behavior.use-uv=true
-          rye sync --no-dev
-
-      - name: Sync
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
+          DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
+          VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
+          VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
         run: |-
-          gh release create video --prerelease --notes video --title video > /dev/null 2>&1 || true
-          gh release download video -D old  > /dev/null 2>&1 || true
-          python sync.py --remote-host ${{ secrets.PODS_VIDEO }} --remote-path podsync.opml --pod-type video
+          gh release download metadata -D meta --clobber
+          python tubesync/main.py
 
   keepalive-job:
     name: Keepalive Workflow

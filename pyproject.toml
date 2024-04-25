@@ -1,19 +1,20 @@
-[project]
+[tool.poetry]
+authors = ["hfpods4085 <166705635+hfpods4085@users.noreply.github.com>"]
+description = ""
 name = "pods"
-version = "0.1.0"
-description = "Add your description here"
-authors = [{ name = "hfpods4085", email = "166705635+hfpods4085@users.noreply.github.com" }]
-dependencies = [
-    "requests>=2.31.0",
-    "xmltodict>=0.13.0",
-]
 readme = "README.md"
-requires-python = ">= 3.11"
-license = { text = "MIT" }
+version = "0.1.0"
 
-[tool.rye]
-managed = true
-virtual = true
-dev-dependencies = [
-    "ipdb>=0.13.13",
-]
+[tool.poetry.dependencies]
+feedparser = ">=6.0.11"
+python = ">=3.8,<3.13"
+videogram = { url = "https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.1.0.tar.gz" }
+xmltodict = ">=0.13.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ipdb = ">=0.13.13"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
