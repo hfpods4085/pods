@@ -1,0 +1,67 @@
+---
+name: Single
+run-name: sync ${{inputs.name}}
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        required: true
+        description: feed name in config
+        type: string
+
+permissions: write-all
+concurrency:
+  group: ${{ github.workflow }}-${{inputs.name}}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: |
+            ~/.local/bin/ffmpeg
+            ~/.local/bin/ffprobe
+          key: ${{ runner.os }}-ffmpeg
+
+      - name: Install ffmpeg
+        if: steps.cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          if [ ! -x "$HOME/.local/bin/ffmpeg" ]; then
+          mkdir -p ~/.local/bin
+          curl -fsSL -o /tmp/ffmpeg.tar.gz "https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz"
+          tar --extract --strip-components=1 --file /tmp/ffmpeg.tar.gz -C ~/.local/bin/ --wildcards '*/ffmpeg' '*/ffprobe'
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install python packages
+        run: pip install -r requirements.txt
+
+      - name: Download releases
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |-
+          gh release download metadata -D meta --clobber --pattern ${{inputs.name}}.json || true
+          gh release download audio -D audio --clobber --pattern ${{inputs.name}}.xml || true
+          gh release download video -D video --clobber --pattern ${{inputs.name}}.xml || true
+
+      - name: Sync
+        timeout-minutes: 60
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
+          VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
+          VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
+        run: |-
+          python tubesync/tubesync.py --name ${{inputs.name}}
