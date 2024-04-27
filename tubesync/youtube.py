@@ -6,84 +6,17 @@ import argparse
 import asyncio
 import os
 import sys
-from datetime import datetime
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 import feedparser
 from github import gh
 from loguru import logger
+from podcast import generate_pod_header, generate_pod_item
 from utils import load_json, load_xml, save_json, save_xml
 from videogram.utils import delete_files
 from videogram.videogram import sync
 from videogram.youtube import get_youtube_info
 from yt_dlp.utils import ExtractorError, YoutubeDLError
-
-
-def generate_pod_header(conf: dict, feed_info: dict) -> dict:
-    pub_date = datetime.strptime(feed_info["published"], "%Y-%m-%dT%H:%M:%S%z")
-    now = datetime.now(tz=ZoneInfo("UTC")).strftime("%a, %d %b %Y %H:%M:%S %z")
-    return {
-        "rss": {
-            "@version": "2.0",
-            "@xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
-            "channel": {
-                "title": feed_info["title"],
-                "link": feed_info["link"],
-                "description": feed_info["title"],
-                "category": "TV & Film",
-                "generator": "TubeSync",
-                "language": "en-us",
-                "lastBuildDate": now,
-                "pubDate": pub_date.strftime("%a, %d %b %Y %H:%M:%S %z"),
-                "image": {
-                    "url": conf["cover"],
-                    "title": feed_info["title"],
-                    "link": feed_info["link"],
-                },
-                "itunes:author": feed_info["author"],
-                "itunes:block": "yes",
-                "itunes:category": {"@text": "TV & Film"},
-                "itunes:explicit": "no",
-                "itunes:image": {"@href": conf["cover"]},
-                "itunes:subtitle": feed_info["title"],
-                "itunes:summary": feed_info["title"],
-                "item": [],
-            },
-        }
-    }
-
-
-def generate_pod_item(conf: dict, feed_entry: dict, upload_info: dict, pod_type="audio") -> dict:
-    pub_date = datetime.strptime(feed_entry["published"], "%Y-%m-%dT%H:%M:%S%z")
-    if pod_type == "audio":
-        enclosure = {
-            "@url": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{conf['name']}/{feed_entry['yt_videoid']}.m4a",
-            "@length": upload_info["audio_filesize"],
-            "@type": "audio/x-m4a",
-        }
-    else:
-        enclosure = {
-            "@url": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{conf['name']}/{feed_entry['yt_videoid']}.mp4",
-            "@length": upload_info["video_filesize"],
-            "@type": "video/mp4",
-        }
-
-    return {
-        "guid": feed_entry["yt_videoid"],
-        "title": feed_entry["title"],
-        "link": feed_entry["link"],
-        "description": feed_entry["summary"],
-        "pubDate": pub_date.strftime("%a, %d %b %Y %H:%M:%S %z"),
-        "enclosure": enclosure,
-        "itunes:author": feed_entry["author"],
-        "itunes:subtitle": feed_entry["title"],
-        "itunes:summary": feed_entry["summary"],
-        "itunes:image": {"@href": f"https://i.ytimg.com/vi/{feed_entry['yt_videoid']}/maxresdefault.jpg"},
-        "itunes:duration": upload_info["duration"],
-        "itunes:explicit": "no",
-        "itunes:order": "1",
-    }
 
 
 async def process_single_entry(entry: dict, conf: dict) -> dict:
@@ -128,7 +61,7 @@ async def process_single_entry(entry: dict, conf: dict) -> dict:
             logger.debug(f"Rename {video_path.name} to {new_path.name}")
             video_path.rename(new_path)
             gh.upload_release(new_path.as_posix(), conf["name"], clean=True)
-            res["video_item"] = generate_pod_item(conf, entry, tg_results, "video")
+            res["video_item"] = generate_pod_item(entry, "video", conf["name"], tg_results["video_filesize"], tg_results["duration"])
         logger.info(f"Upload audio to GitHub: {tg_results['title']}")
         audio_path = Path(tg_results["audio_path"])
         tg_results["audio_filesize"] = audio_path.stat().st_size
@@ -137,7 +70,7 @@ async def process_single_entry(entry: dict, conf: dict) -> dict:
         logger.debug(f"Rename {audio_path.name} to {new_path.name}")
         audio_path.rename(new_path)
         gh.upload_release(new_path.as_posix(), conf["name"], clean=True)
-        res["audio_item"] = generate_pod_item(conf, entry, tg_results, "audio")
+        res["audio_item"] = generate_pod_item(entry, "audio", conf["name"], tg_results["audio_filesize"], tg_results["duration"])
 
     except ExtractorError as e:
         if "IP is likely being blocked" in e.orig_msg:
@@ -172,7 +105,7 @@ async def main():
         if res["item_has_update"]:
             # save audio pod
             Path("audio").mkdir(exist_ok=True)
-            pod_header = generate_pod_header(conf, remote["feed"])
+            pod_header = generate_pod_header(remote["feed"], cover_url=conf["cover"])
             cached_audio = load_xml(f"audio/{args.name}.xml")
             audio_items: list = cached_audio["rss"]["channel"].get("item", [])
             if isinstance(audio_items, dict):
