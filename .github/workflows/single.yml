@@ -51,7 +51,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |-
-          gh release download metadata -D meta --clobber --pattern ${{inputs.name}}.json || true
+          gh release download metadata -D metadata --clobber --pattern ${{inputs.name}}.json || true
           gh release download audio -D audio --clobber --pattern ${{inputs.name}}.xml || true
           gh release download video -D video --clobber --pattern ${{inputs.name}}.xml || true
 

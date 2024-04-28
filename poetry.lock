@@ -1079,7 +1079,7 @@ description = ""
 optional = false
 python-versions = ">=3.8,<3.13"
 files = [
-    {file = "videogram-0.1.0.tar.gz", hash = "sha256:ff12d42e42abcbbad79d941f7f08c710d5e34db9c230276948804bdea07c869a"},
+    {file = "videogram-0.1.0.tar.gz", hash = "sha256:4eebfe6d47469a4df4e80f74ac3b992aaa8c1b4190baa0373a10d0bbe1f42661"},
 ]
 
 [package.dependencies]

@@ -1,10 +1,7 @@
 # custon
-meta/
+metadata/
 audio/
 video/
-new_meta/
-new_audio/
-new_video/
 
 # python generated files
 __pycache__/

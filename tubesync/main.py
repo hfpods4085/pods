@@ -16,7 +16,7 @@ def main():
 
     for conf in configs:
         logger.info(f"Processing {conf['name']}")
-        metadata: list = load_json(f"meta/{conf['name']}.json").get("metadata", [])
+        metadata: list = load_json(f"{args.metadata_dir}/{conf['name']}.json").get("metadata", [])
         processed_vids = {x["vid"] for x in metadata}
         remote = feedparser.parse(f"https://www.youtube.com/feeds/videos.xml?channel_id={conf['yt_channel']}")
         remote_vids = {x["yt_videoid"] for x in remote["entries"]}
@@ -31,6 +31,7 @@ if __name__ == "__main__":
     # parse arguments
     parser = argparse.ArgumentParser(description="Sync YouTube to Telegram")
     parser.add_argument("--log-level", type=str, default="INFO", required=False, help="Log level")
+    parser.add_argument("--metadata-dir", type=str, default="metadata", required=False, help="Path to metadata directory.")
     parser.add_argument("--config", type=str, default="config/youtube.json", required=False, help="Path to mapping json file.")
     args = parser.parse_args()
 

@@ -51,7 +51,7 @@ jobs:
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
         run: |-
-          gh release download metadata -D meta --clobber
+          gh release download metadata -D metadata --clobber
           python tubesync/main.py
 
   keepalive-job:

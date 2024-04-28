@@ -11,21 +11,21 @@ from loguru import logger
 
 def load_json(path: str) -> dict:
     if osp.exists(path):
-        logger.info(f"Loading json from {path}")
+        logger.debug(f"Loading json from {path}")
         with open(path) as f:
             return json.load(f)
     logger.warning(f"{path} is not exist, use default empty dict")
     return {}
 
 def save_json(data: dict, path: str) -> None:
-    logger.info(f"Saving json to {path}")
+    logger.debug(f"Saving json to {path}")
     with open(path, "w") as f:
         json.dump(data, f, ensure_ascii=False)
 
 
 def load_xml(path: str, template: str = "rss") -> dict:
     if osp.exists(path):
-        logger.info(f"Loading xml from {path}")
+        logger.debug(f"Loading xml from {path}")
         with open(path) as f:
             return xmltodict.parse(f.read())
 
