@@ -15,7 +15,7 @@ from podcast import generate_pod_header, generate_pod_item
 from utils import load_json, load_xml, save_json, save_xml
 from videogram.utils import delete_files
 from videogram.videogram import sync
-from videogram.youtube import get_youtube_info
+from videogram.ytdlp import ytdlp_extract_info
 
 
 class YouTube:
@@ -31,8 +31,8 @@ class YouTube:
             "metadata": {},
             "need_download": False,
         }
-        info = get_youtube_info(entry["link"])
-        if info.get("live_status") != "not_live":
+        info = ytdlp_extract_info(entry["link"], playlist=False, process=False)[0]
+        if info.get("live_status") in {"is_upcoming", "is_live", "post_live"}:
             logger.warning(f"Skip not finished video: {entry['title']}")
             return res
 
@@ -46,7 +46,7 @@ class YouTube:
             logger.warning(f"Skip banned video: {entry['title']}")
             return res
 
-        # skip banned video
+        # skip YouTube shorts
         if self.config["skip_shorts"] and video_is_short:
             logger.warning(f"Skip shorts: {entry['title']}")
             return res
@@ -82,35 +82,38 @@ class YouTube:
             gh.upload_release(f"{self.metadata_dir}/{self.name}.json", "metadata")
 
     def update_audio_feed(self, download_info: dict, feed_entry: dict, feed_info: dict) -> None:
-        if audio := download_info["audio_info"]:
-            logger.info(f"Upload audio to GitHub: {audio['title']}")
-            audio_path = Path(audio["audio_path"])
-            file_size = audio_path.stat().st_size
-            vid = feed_entry["yt_videoid"]
-            new_path = audio_path.with_stem(vid)
-            logger.debug(f"Rename {audio_path.name} to {new_path.name}")
-            audio_path.rename(new_path)
-            gh.upload_release(new_path.as_posix(), self.name, clean=True)
-            pod_item = generate_pod_item(feed_entry, "audio", self.name, file_size, audio["duration"])
+        if len(download_info["audio_info"]) == 0:
+            return
 
-            # upload audio pod
-            Path("audio").mkdir(exist_ok=True)
-            cached_audio = load_xml(f"audio/{self.name}.xml")
-            audio_items = cached_audio["rss"]["channel"].get("item", [])
-            if isinstance(audio_items, dict):
-                audio_items = [audio_items]
+        audio = download_info["audio_info"][0]
+        logger.info(f"Upload audio to GitHub: {audio['title']}")
+        audio_path = Path(audio["audio_path"])
+        file_size = audio_path.stat().st_size
+        vid = feed_entry["yt_videoid"]
+        new_path = audio_path.with_stem(vid)
+        logger.debug(f"Rename {audio_path.name} to {new_path.name}")
+        audio_path.rename(new_path)
+        gh.upload_release(new_path.as_posix(), self.name, clean=True)
+        pod_item = generate_pod_item(feed_entry, "audio", self.name, file_size, audio["duration"])
 
-            audio_items.insert(0, pod_item)
-            pod_header = generate_pod_header(feed_info, cover_url=self.config["cover"])
-            save_xml(pod_header, audio_items, f"audio/{self.name}.xml")
-            gh.upload_release(f"audio/{self.name}.xml", "audio")
+        # upload audio pod
+        Path("audio").mkdir(exist_ok=True)
+        cached_audio = load_xml(f"audio/{self.name}.xml")
+        audio_items = cached_audio["rss"]["channel"].get("item", [])
+        if isinstance(audio_items, dict):
+            audio_items = [audio_items]
+
+        audio_items.insert(0, pod_item)
+        pod_header = generate_pod_header(feed_info, cover_url=self.config["cover"])
+        save_xml(pod_header, audio_items, f"audio/{self.name}.xml")
+        gh.upload_release(f"audio/{self.name}.xml", "audio")
 
     def update_video_feed(self, download_info: dict, feed_entry: dict, feed_info: dict) -> None:
-        if len(download_info["video_info_list"]) == 0:
+        if len(download_info["video_info"]) == 0:
             return
 
         pod_items = []
-        for idx, video in enumerate(download_info["video_info_list"]):
+        for idx, video in enumerate(download_info["video_info"]):
             logger.info(f"Upload video to GitHub: {video['title']}")
             video_path = Path(video["video_path"])
             file_size = video_path.stat().st_size
@@ -164,8 +167,9 @@ async def main():
 
         # Update
         youtube.update_metadata(res["entry_info"])
-        youtube.update_audio_feed(res["download_info"], feed_entry=entry, feed_info=remote["feed"])
-        youtube.update_video_feed(res["download_info"], feed_entry=entry, feed_info=remote["feed"])
+        if res["download_info"]:
+            youtube.update_audio_feed(res["download_info"], feed_entry=entry, feed_info=remote["feed"])
+            youtube.update_video_feed(res["download_info"], feed_entry=entry, feed_info=remote["feed"])
 
         # Cleanup
         if res["entry_info"]["need_download"]:

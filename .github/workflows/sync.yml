@@ -9,8 +9,8 @@ on:
     paths:
       - .github/workflows/sync.yml
       - config/**
-      - tubesync/main.py
-      - tubesync/refresh-opml.py
+      - podsync/main.py
+      - podsync/refresh-opml.py
       - requirements.txt
   schedule:
     - cron: 17 * * * *
@@ -41,7 +41,7 @@ jobs:
         run: |-
           gh release download audio -D audio --clobber --pattern podsync.opml
           gh release download video -D video --clobber --pattern podsync.opml
-          python tubesync/refresh-opml.py
+          python podsync/refresh-opml.py
 
       - name: Sync
         env:
@@ -52,7 +52,7 @@ jobs:
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
         run: |-
           gh release download metadata -D metadata --clobber
-          python tubesync/main.py
+          python podsync/main.py
 
   keepalive-job:
     name: Keepalive Workflow

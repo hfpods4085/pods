@@ -28,7 +28,7 @@ def generate_pod_header(feed_info: dict, cover_url: str) -> dict:
                 "link": feed_info["link"],
                 "description": feed_info["title"],
                 "category": "TV & Film",
-                "generator": "TubeSync",
+                "generator": "PodSync",
                 "language": "en-us",
                 "lastBuildDate": now,
                 "pubDate": pub_date.strftime("%a, %d %b %Y %H:%M:%S %z"),

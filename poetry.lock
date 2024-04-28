@@ -53,18 +53,18 @@ test = ["astroid (>=1,<2)", "astroid (>=2,<4)", "pytest"]
 
 [[package]]
 name = "asyncer"
-version = "0.0.5"
+version = "0.0.7"
 description = "Asyncer, async and await, focused on developer experience."
 optional = false
-python-versions = ">=3.8,<4.0"
+python-versions = ">=3.8"
 files = [
-    {file = "asyncer-0.0.5-py3-none-any.whl", hash = "sha256:ba06d6de3c750763868dffacf89b18d40b667605b0241d31c2ee43f188e2ab74"},
-    {file = "asyncer-0.0.5.tar.gz", hash = "sha256:2979f3e04cbedfe5cfeb79027dcf7d004fcc4430a0ca0066ae20490f218ec06e"},
+    {file = "asyncer-0.0.7-py3-none-any.whl", hash = "sha256:f0d579d4f67c4ead52ede3a45c854f462cae569058a8a6a68a4ebccac1c335d8"},
+    {file = "asyncer-0.0.7.tar.gz", hash = "sha256:d5e563fb0f56eb87b97257984703658a4f5bbdb52ff851b3e8ed864cc200b1d2"},
 ]
 
 [package.dependencies]
 anyio = ">=3.4.0,<5.0"
-typing_extensions = {version = ">=4.8.0,<5.0.0", markers = "python_version < \"3.10\""}
+typing_extensions = {version = ">=4.8.0", markers = "python_version < \"3.10\""}
 
 [[package]]
 name = "backcall"
@@ -461,34 +461,6 @@ files = [
 sgmllib3k = "*"
 
 [[package]]
-name = "ffmpeg-python"
-version = "0.2.0"
-description = "Python bindings for FFmpeg - with complex filtering support"
-optional = false
-python-versions = "*"
-files = [
-    {file = "ffmpeg-python-0.2.0.tar.gz", hash = "sha256:65225db34627c578ef0e11c8b1eb528bb35e024752f6f10b78c011f6f64c4127"},
-    {file = "ffmpeg_python-0.2.0-py3-none-any.whl", hash = "sha256:ac441a0404e053f8b6a1113a77c0f452f1cfc62f6344a769475ffdc0f56c23c5"},
-]
-
-[package.dependencies]
-future = "*"
-
-[package.extras]
-dev = ["Sphinx (==2.1.0)", "future (==0.17.1)", "numpy (==1.16.4)", "pytest (==4.6.1)", "pytest-mock (==1.10.4)", "tox (==3.12.1)"]
-
-[[package]]
-name = "future"
-version = "1.0.0"
-description = "Clean single-source support for Python 3 and 2"
-optional = false
-python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-files = [
-    {file = "future-1.0.0-py3-none-any.whl", hash = "sha256:929292d34f5872e70396626ef385ec22355a1fae8ad29e1a734c3e43f9fbc216"},
-    {file = "future-1.0.0.tar.gz", hash = "sha256:bd2968309307861edae1458a4f8a4f3598c03be43b97521076aebf5d94c07b05"},
-]
-
-[[package]]
 name = "idna"
 version = "3.7"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -793,6 +765,23 @@ files = [
 ]
 
 [[package]]
+name = "pyee"
+version = "11.1.0"
+description = "A rough port of Node.js's EventEmitter to Python with a few tricks of its own"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "pyee-11.1.0-py3-none-any.whl", hash = "sha256:5d346a7d0f861a4b2e6c47960295bd895f816725b27d656181947346be98d7c1"},
+    {file = "pyee-11.1.0.tar.gz", hash = "sha256:b53af98f6990c810edd9b56b87791021a8f54fd13db4edd1142438d44ba2263f"},
+]
+
+[package.dependencies]
+typing-extensions = "*"
+
+[package.extras]
+dev = ["black", "build", "flake8", "flake8-black", "isort", "jupyter-console", "mkdocs", "mkdocs-include-markdown-plugin", "mkdocstrings[python]", "pytest", "pytest-asyncio", "pytest-trio", "sphinx", "toml", "tox", "trio", "trio", "trio-typing", "twine", "twisted", "validate-pyproject[all]"]
+
+[[package]]
 name = "pygments"
 version = "2.17.2"
 description = "Pygments is a syntax highlighting package written in Python."
@@ -833,6 +822,21 @@ files = [
     {file = "PySocks-1.7.1-py3-none-any.whl", hash = "sha256:2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5"},
     {file = "PySocks-1.7.1.tar.gz", hash = "sha256:3f8804571ebe159c380ac6de37643bb4685970655d3bba243530d6558b799aa0"},
 ]
+
+[[package]]
+name = "python-ffmpeg"
+version = "2.0.12"
+description = "A python binding for FFmpeg which provides sync and async APIs"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "python_ffmpeg-2.0.12-py3-none-any.whl", hash = "sha256:d86697da8dfb39335183e336d31baf42fb217468adf5ac97fd743898240faae3"},
+    {file = "python_ffmpeg-2.0.12.tar.gz", hash = "sha256:19ac80af5a064a2f53c245af1a909b2d7648ea045500d96d3bcd507b88d43dc7"},
+]
+
+[package.dependencies]
+pyee = "*"
+typing-extensions = "*"
 
 [[package]]
 name = "requests"
@@ -1077,17 +1081,17 @@ name = "videogram"
 version = "0.1.0"
 description = ""
 optional = false
-python-versions = ">=3.8,<3.13"
+python-versions = ">=3.8,<4.0"
 files = [
-    {file = "videogram-0.1.0.tar.gz", hash = "sha256:4eebfe6d47469a4df4e80f74ac3b992aaa8c1b4190baa0373a10d0bbe1f42661"},
+    {file = "videogram-0.1.0.tar.gz", hash = "sha256:94c2f3c267abee25b6ca32e7f9e5de9ecb58ca5891e1815c07912d8bed98bfb9"},
 ]
 
 [package.dependencies]
 asyncer = ">=0.0.5"
-ffmpeg-python = ">=0.2.0"
 loguru = ">=0.7.2"
 pyrogram = ">=2.0.106"
 pysocks = ">=1.7.1"
+python-ffmpeg = ">=2.0.12"
 tgcrypto = ">=1.2.5"
 typer = ">=0.12.3"
 yt-dlp = ">=2024.4.9"
@@ -1244,5 +1248,5 @@ secretstorage = ["cffi", "secretstorage"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = ">=3.8,<3.13"
-content-hash = "44a4679503b89eb5bd563b978fac58cf20ef753fd9121df2810d4d3c028328af"
+python-versions = "^3.8"
+content-hash = "7547911e44f75b647aa0fec822a98294ea11f6b18185104dabfbd0070fb7609a"
