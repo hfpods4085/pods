@@ -6,6 +6,10 @@ import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+"""Apple Podcast Specification
+
+https://help.apple.com/itc/podcasts_connect/#/itcb54353390
+"""
 
 def generate_pod_header(feed_info: dict, cover_url: str) -> dict:
     """Generate podcast header for RSS feed.
@@ -23,13 +27,25 @@ def generate_pod_header(feed_info: dict, cover_url: str) -> dict:
         "rss": {
             "@version": "2.0",
             "@xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+            "@xmlns:podcast": "https://podcastindex.org/namespace/1.0",
             "channel": {
+                # Required tags
                 "title": feed_info["title"],
-                "link": feed_info["link"],
                 "description": feed_info["title"],
+                "itunes:image": {"@href": cover_url},
+                "language": "en-us",
+                "itunes:category": {"@text": "TV & Film"},
+                "itunes:explicit": "no",
+                # Recommended tags
+                "itunes:author": feed_info["author"],
+                "link": feed_info["link"],
+                # Situational tags
+                "itunes:title": feed_info["title"],
+                "itunes:type": "Episodic",
+                "itunes:block": "yes",
+                # Common tags for rss
                 "category": "TV & Film",
                 "generator": "PodSync",
-                "language": "en-us",
                 "lastBuildDate": now,
                 "pubDate": pub_date.strftime("%a, %d %b %Y %H:%M:%S %z"),
                 "image": {
@@ -37,13 +53,6 @@ def generate_pod_header(feed_info: dict, cover_url: str) -> dict:
                     "title": feed_info["title"],
                     "link": feed_info["link"],
                 },
-                "itunes:author": feed_info["author"],
-                "itunes:block": "yes",
-                "itunes:category": {"@text": "TV & Film"},
-                "itunes:explicit": "no",
-                "itunes:image": {"@href": cover_url},
-                "itunes:subtitle": feed_info["title"],
-                "itunes:summary": feed_info["title"],
                 "item": [],
             },
         }
@@ -80,17 +89,15 @@ def generate_pod_item(feed_entry: dict, pod_type: str, release_name: str, filesi
         }
 
     return {
-        "guid": feed_entry["yt_videoid"],
+        # Required tags
         "title": feed_entry["title"],
-        "link": feed_entry["link"],
-        "description": feed_entry["summary"],
-        "pubDate": pub_date.strftime("%a, %d %b %Y %H:%M:%S %z"),
         "enclosure": enclosure,
-        "itunes:author": feed_entry["author"],
-        "itunes:subtitle": feed_entry["title"],
-        "itunes:summary": feed_entry["summary"],
-        "itunes:image": {"@href": f"https://i.ytimg.com/vi/{feed_entry['yt_videoid']}/maxresdefault.jpg"},
+        "guid": feed_entry["yt_videoid"],
+        # Recommended tags
+        "pubDate": pub_date.strftime("%a, %d %b %Y %H:%M:%S %z"),
+        "description": feed_entry["summary"],
         "itunes:duration": duration,
+        "link": feed_entry["link"],
+        "itunes:image": {"@href": feed_entry["media_thumbnail"][0]["url"]},
         "itunes:explicit": "no",
-        "itunes:order": "1",
     }

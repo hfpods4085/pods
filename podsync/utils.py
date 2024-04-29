@@ -38,11 +38,7 @@ def load_xml(path: str, template: str = "rss") -> dict:
 
 
 def save_xml(header: dict, items: list[dict], save_path: str):
-    for idx, item in enumerate(items):
-        item["itunes:order"] = str(idx + 1)
     header["rss"]["channel"]["item"] = items
     xml_str = xmltodict.unparse(header, pretty=True, full_document=True)
-    # inject CDATA tag
-    xml_str = xml_str.replace("<itunes:summary>", "<itunes:summary><![CDATA[").replace("</itunes:summary>", "]]></itunes:summary>")
-    with open(f"{save_path}", "w") as f:
+    with open(save_path, "w") as f:
         f.write(xml_str)
