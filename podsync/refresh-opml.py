@@ -11,6 +11,12 @@ import xmltodict
 from github import gh
 from loguru import logger
 from utils import load_json, load_xml
+from videogram.ytdlp import ytdlp_extract_info
+
+
+def get_youtube_description(yt_channel: str) -> str:
+    info: list[dict] = ytdlp_extract_info(f"https://www.youtube.com/channel/{yt_channel}", playlist=False, process=False)
+    return info[0]["description"] if info[0]["description"].strip() else info[0]["uploader"]
 
 
 def has_update(conf_data: dict, opml_data: dict) -> bool:
@@ -28,15 +34,21 @@ def update_opml(conf_data: dict, opml_data: dict, pod_type: str) -> dict:
         if Path(info["name"]).stem in exist_feeds:
             new_feeds.append(next(feed for feed in opml_feeds if Path(feed["@xmlUrl"]).stem == info["name"]))
             continue
+
+        if yt_channel := info.get("yt_channel"):  # noqa: SIM108
+            description = get_youtube_description(yt_channel)
+        else:
+            description = info["title"]
+
         new_feeds.append(
             {
-                "@text": f"{info['title']}&#10;官方频道: https://www.youtube.com/channel/{info['yt_channel']}",
+                "@text": description,
                 "@type": "rss",
                 "@xmlUrl": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{pod_type}/{info['name']}.xml",
                 "@title": info["title"],
             }
         )
-    opml_data["opml"]["body"]["outline"] = new_feeds
+    opml_data["opml"]["body"]["outline"] = sorted(new_feeds, key=lambda x: x["@xmlUrl"])
     return opml_data
 
 
