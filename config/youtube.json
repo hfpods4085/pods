@@ -207,15 +207,6 @@
     "title": "Papi酱"
   },
   {
-    "name": "polishingtheturd",
-    "cover": "https://yt3.ggpht.com/ytc/AIdro_k3lREWAthxei1InrAeiXU7jYefjKowEiFcOv953rRKFuY=s800-c-k-c0x00ffffff-no-rj",
-    "yt_channel": "UCeGXnibpvlhobJt7Ijne1Mg",
-    "skip_video": false,
-    "skip_shorts": true,
-    "tg_target": null,
-    "title": "Polishing The Turd 朽木可雕"
-  },
-  {
     "name": "shiyin",
     "cover": "https://yt3.ggpht.com/Mww-UybqGpJMpKO4q7knT7cheSWFOSlGB0_3EUzhPNqU0ze_l397IeArwtXeLMqpvvOXueSAOw=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UC4QxpE043KzFdI7O4zMQ70w",
@@ -251,6 +242,16 @@
     "tg_target": -1002055794493,
     "title": "多伦多方脸"
   },
+  {
+    "name": "tubage",
+    "cover": "https://yt3.ggpht.com/RZGlKBx7Ollt5TfD7d4QJBQ3TxX0of0QqUKzhkqypquB_folfctwOuLJP0CgksRLcrVxXpGmi68=s800-c-k-c0x00ffffff-no-rj",
+    "yt_channel": "UCZcmeWyuT00rnuNPmQ17Piw",
+    "skip_video": false,
+    "skip_shorts": true,
+    "tg_target": null,
+    "title": "医学博士兔叭咯"
+  },
+
   {
     "name": "wangzhian",
     "cover": "https://yt3.ggpht.com/ZC9IMkqrw-OuYVM5zU5-shKEK7DfCoym6Dl5HPcwh4pj_u5gdkJXxggDa91GZiDgwcbmPjgw4S0=s800-c-k-c0x00ffffff-no-rj",
