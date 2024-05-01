@@ -6,6 +6,7 @@ readme = "README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
+dateparser = ">=1.2.0"
 feedparser = ">=6.0.11"
 python = "^3.8"
 videogram = { url = "https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.1.0.tar.gz" }

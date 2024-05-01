@@ -8,6 +8,7 @@ import os
 import sys
 from pathlib import Path
 
+import dateparser
 import feedparser
 from github import gh
 from loguru import logger
@@ -62,12 +63,13 @@ class YouTube:
         }
         entry_info = self.parse_entry_info(entry)
         if not entry_info["need_update_metadata"]:
+            res["entry_info"] = entry_info
             return res
+        publish_time = dateparser.parse(entry["published"], settings={"TO_TIMEZONE": os.getenv("TZ", "UTC")})
+        entry_info["metadata"]["time"] = f"{publish_time:%a, %d %b %Y %H:%M:%S %z}"
         res["entry_info"] = entry_info
-
         if not entry_info["need_download"]:
             return res
-
         logger.info(f"Syncing to Telegram: {entry['title']}")
         tg_target = self.config["tg_target"] if self.config["tg_target"] else os.environ["DEFAULT_TG_TARGET"]
         download_info = await sync(entry["link"], tg_id=tg_target, sync_video=not self.config["skip_video"], clean=False)

@@ -17,6 +17,7 @@ def load_json(path: str) -> dict:
     logger.warning(f"{path} is not exist, use default empty dict")
     return {}
 
+
 def save_json(data: dict, path: str) -> None:
     logger.debug(f"Saving json to {path}")
     with open(path, "w") as f:
