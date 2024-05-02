@@ -4,7 +4,13 @@ from __future__ import annotations
 
 import os
 from datetime import datetime
+from typing import TYPE_CHECKING
 from zoneinfo import ZoneInfo
+
+import dateparser
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 """Apple Podcast Specification
 
@@ -12,18 +18,23 @@ https://help.apple.com/itc/podcasts_connect/#/itcb54353390
 """
 
 
-def generate_pod_header(feed_info: dict, cover_url: str) -> dict:
+def generate_pod_header(feed_info: dict, config: dict) -> dict:
     """Generate podcast header for RSS feed.
 
     Args:
         feed_info (dict): feed info parsed from feedparser
-        cover_url (str): corver image url
+        config (dict): custom configuration of this feed
 
     Returns:
         dict: header of RSS feed
     """
-    pub_date = datetime.strptime(feed_info["published"], "%Y-%m-%dT%H:%M:%S%z")
-    now = datetime.now(tz=ZoneInfo("UTC")).strftime("%a, %d %b %Y %H:%M:%S %z")
+    now = datetime.now(tz=ZoneInfo("UTC"))
+    if "published" in feed_info:
+        pub_date = dateparser.parse(feed_info["published"], settings={"TO_TIMEZONE": os.getenv("TZ", "UTC")})
+    elif "updated" in feed_info:
+        pub_date = dateparser.parse(feed_info["updated"], settings={"TO_TIMEZONE": os.getenv("TZ", "UTC")})
+    else:
+        pub_date = now
     return {
         "rss": {
             "@version": "2.0",
@@ -31,14 +42,14 @@ def generate_pod_header(feed_info: dict, cover_url: str) -> dict:
             "@xmlns:podcast": "https://podcastindex.org/namespace/1.0",
             "channel": {
                 # Required tags
-                "title": feed_info["title"],
-                "description": feed_info["title"],
-                "itunes:image": {"@href": cover_url},
+                "title": config.get("title", feed_info["title"]),
+                "description": config.get("description", feed_info["title"]),
+                "itunes:image": {"@href": config["cover"]},
                 "language": "en-us",
                 "itunes:category": {"@text": "TV & Film"},
                 "itunes:explicit": "no",
                 # Recommended tags
-                "itunes:author": feed_info["author"],
+                "itunes:author": config.get("title", feed_info["title"]),
                 "link": feed_info["link"],
                 # Situational tags
                 "itunes:title": feed_info["title"],
@@ -47,10 +58,10 @@ def generate_pod_header(feed_info: dict, cover_url: str) -> dict:
                 # Common tags for rss
                 "category": "TV & Film",
                 "generator": "PodSync",
-                "lastBuildDate": now,
-                "pubDate": pub_date.strftime("%a, %d %b %Y %H:%M:%S %z"),
+                "lastBuildDate": f"{now:%a, %d %b %Y %H:%M:%S %z}",
+                "pubDate": f"{pub_date:%a, %d %b %Y %H:%M:%S %z}",
                 "image": {
-                    "url": cover_url,
+                    "url": config["cover"],
                     "title": feed_info["title"],
                     "link": feed_info["link"],
                 },
@@ -60,7 +71,14 @@ def generate_pod_header(feed_info: dict, cover_url: str) -> dict:
     }
 
 
-def generate_pod_item(feed_entry: dict, pod_type: str, release_name: str, filesize: int, duration: int) -> dict:
+def generate_pod_item(
+    feed_entry: dict,
+    pod_type: str,
+    release_name: str,
+    filepath: Path,
+    cover: str,
+    duration: int,
+) -> dict:
     """Generate podcast item for RSS feed.
 
     We will upload audio and video files to GitHub release, and generate RSS feed for podcast.
@@ -69,23 +87,24 @@ def generate_pod_item(feed_entry: dict, pod_type: str, release_name: str, filesi
         feed_entry (dict): entry parsed from feedparser
         pod_type (str): podcast type. Choices: "audio", "video"
         release_name (str): GitHub release name
-        filesize (int): Size of the file in bytes
+        filepath (Path): path to the media file
+        cover (str): cover image url
         duration (int): duration of the media file in seconds
 
     Returns:
         dict: podcast item for RSS feed
     """
-    pub_date = datetime.strptime(feed_entry["published"], "%Y-%m-%dT%H:%M:%S%z")
+    pub_date = dateparser.parse(feed_entry["published"], settings={"TO_TIMEZONE": os.getenv("TZ", "UTC")})
     if pod_type == "audio":
         enclosure = {
-            "@url": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{release_name}/{feed_entry['yt_videoid']}.m4a",
-            "@length": filesize,
+            "@url": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{release_name}/{filepath.name}",
+            "@length": filepath.stat().st_size,
             "@type": "audio/x-m4a",
         }
     else:
         enclosure = {
-            "@url": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{release_name}/{feed_entry['yt_videoid']}.mp4",
-            "@length": filesize,
+            "@url": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{release_name}/{filepath.name}",
+            "@length": filepath.stat().st_size,
             "@type": "video/mp4",
         }
 
@@ -93,12 +112,12 @@ def generate_pod_item(feed_entry: dict, pod_type: str, release_name: str, filesi
         # Required tags
         "title": feed_entry["title"],
         "enclosure": enclosure,
-        "guid": feed_entry["yt_videoid"],
+        "guid": filepath.stem,
         # Recommended tags
-        "pubDate": pub_date.strftime("%a, %d %b %Y %H:%M:%S %z"),
+        "pubDate": f"{pub_date:%a, %d %b %Y %H:%M:%S %z}",
         "description": feed_entry["summary"],
         "itunes:duration": duration,
         "link": feed_entry["link"],
-        "itunes:image": {"@href": feed_entry["media_thumbnail"][0]["url"]},
+        "itunes:image": {"@href": cover},
         "itunes:explicit": "no",
     }

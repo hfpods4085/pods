@@ -1,6 +1,6 @@
 ---
-name: Single
-run-name: sync ${{inputs.name}}
+name: Bilibili
+run-name: Bilibili ${{inputs.name}}
 on:
   workflow_dispatch:
     inputs:
@@ -10,8 +10,9 @@ on:
         type: string
 
 permissions: write-all
+# the cookie of bilibili can only be used by one job at a time
 concurrency:
-  group: ${{ github.workflow }}-${{inputs.name}}
+  group: ${{ github.workflow }}
   cancel-in-progress: false
 
 jobs:
@@ -58,13 +59,17 @@ jobs:
           gh release download audio -D audio --clobber --pattern ${{inputs.name}}.xml || true
           gh release download video -D video --clobber --pattern ${{inputs.name}}.xml || true
 
-      - name: Sync
-        timeout-minutes: 60
+      - name: Sync Bilibili
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
+          RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
+          BILIBILI_COOKIES_BASE64: ${{ secrets.BILIBILI_COOKIES_BASE64 }}
         run: |-
-          python podsync/youtube.py --name ${{inputs.name}}
+          mkdir -p ~/.config/videogram/cookies
+          echo "${{ secrets.BILIBILI_COOKIES_BASE64 }}" | base64 -d > ~/.config/videogram/cookies/bilibili.txt
+          cat ~/.config/videogram/cookies/bilibili.txt | wc -l
+          python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json
