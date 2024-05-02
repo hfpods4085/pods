@@ -10,7 +10,8 @@ from pathlib import Path
 import xmltodict
 from github import gh
 from loguru import logger
-from utils import load_json, load_xml
+from utils import load_xml
+from videogram.utils import load_json
 from videogram.ytdlp import ytdlp_extract_info
 
 

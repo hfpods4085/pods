@@ -1,6 +1,6 @@
 ---
 name: Single
-run-name: sync ${{inputs.name}}
+run-name: sync ${{inputs.platform}} ${{inputs.name}}
 on:
   workflow_dispatch:
     inputs:
@@ -8,10 +8,14 @@ on:
         required: true
         description: feed name in config
         type: string
+      platform:
+        required: true
+        description: social media platform
+        type: string
 
 permissions: write-all
 concurrency:
-  group: ${{ github.workflow }}-${{inputs.name}}
+  group: ${{ github.workflow }}-${{inputs.platform}}-${{inputs.name}}
   cancel-in-progress: false
 
 jobs:
@@ -58,7 +62,8 @@ jobs:
           gh release download audio -D audio --clobber --pattern ${{inputs.name}}.xml || true
           gh release download video -D video --clobber --pattern ${{inputs.name}}.xml || true
 
-      - name: Sync
+      - name: Sync YouTube
+        if: ${{ inputs.platform == 'youtube' }}
         timeout-minutes: 60
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -67,4 +72,21 @@ jobs:
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
         run: |-
-          python podsync/youtube.py --name ${{inputs.name}}
+          python podsync/youtube.py --name ${{inputs.name}} --config config/youtube.json
+
+      - name: Sync Bilibili
+        if: ${{ inputs.platform == 'bilibili' }}
+        timeout-minutes: 60
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
+          VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
+          VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
+          RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
+          BILIBILI_COOKIES: ${{ secrets.BILIBILI_COOKIES }}
+        run: |-
+          mkdir -p ~/.config/videogram/cookies
+          echo "${{ secrets.BILIBILI_COOKIES }}" > ~/.config/videogram/cookies/bilibili.txt
+          echo ~/.config/videogram/cookies/bilibili.txt | wc -l
+          python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json
