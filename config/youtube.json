@@ -81,6 +81,15 @@
     "title": "崔永元"
   },
   {
+    "name": "dalizi",
+    "cover": "https://yt3.ggpht.com/wUrQLamFoEDd2_FfhiOAq_JjLT-hdoUYVaO1WmL8yjjVphnlK9BxDQ-jCBesOGcF3_RhAcU5=s800-c-k-c0x00ffffff-no-rj",
+    "yt_channel": "UCAcum7VtjCjEUpWyt6tms0Q",
+    "skip_video": false,
+    "skip_shorts": true,
+    "tg_target": null,
+    "title": "大狸子切切里"
+  },
+  {
     "name": "dawenti",
     "cover": "https://yt3.ggpht.com/UvVniDpX60gZL9rwo9Jq-XLARfS-fZ3AhsHAqhMIT4Gx3ByNsLfcWsH5_pZzRWoIqMsSfxBTuiA=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCC9X5bLhdMeLvPxlMb-GShw",
@@ -278,6 +287,15 @@
     "skip_shorts": true,
     "tg_target": -1002085992185,
     "title": "小Lin说"
+  },
+  {
+    "name": "yitiao",
+    "cover": "https://yt3.ggpht.com/ytc/AIdro_kKbncow9M9MlLyoA8zp_tK-ZEOXF9OEz2UpwiI51zAvSg=s800-c-k-c0x00ffffff-no-rj",
+    "yt_channel": "UCulFhrW_YCwkq_BP16C82mA",
+    "skip_video": false,
+    "skip_shorts": true,
+    "tg_target": null,
+    "title": "一条Yit"
   },
   {
     "name": "yixi",

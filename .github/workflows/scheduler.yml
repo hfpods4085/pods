@@ -1,5 +1,5 @@
 ---
-name: Sync
+name: Schedule
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
     paths:
       - .github/workflows/sync.yml
       - config/**
-      - podsync/main.py
+      - podsync/scheduler.py
       - podsync/refresh-opml.py
       - requirements.txt
   schedule:
@@ -50,9 +50,11 @@ jobs:
           DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
+          RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
         run: |-
           gh release download metadata -D metadata --clobber
-          python podsync/main.py
+          python podsync/scheduler.py --platform youtube --config config/youtube.json
+          python podsync/scheduler.py --platform bilibili --config config/bilibili.json
 
   keepalive-job:
     name: Keepalive Workflow
