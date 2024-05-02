@@ -4,7 +4,7 @@ name: Weekly Cleanup
 on:
   workflow_dispatch:
   schedule:
-    - cron: 11 11 * * 5
+    - cron: 11 11 * * *
 
 permissions: write-all
 
@@ -12,16 +12,11 @@ jobs:
   delete:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete old artifacts
-        uses: c-hive/gha-remove-artifacts@v1
-        with:
-          age: 7 days
-
       - name: Delete old workflow runs
         uses: Mattraks/delete-workflow-runs@v2
         with:
-          retain_days: 7
-          keep_minimum_runs: 3
+          retain_days: 3
+          keep_minimum_runs: 2
 
       - name: Delete runs by state
         uses: Mattraks/delete-workflow-runs@v2
@@ -36,3 +31,10 @@ jobs:
           retain_days: 0
           keep_minimum_runs: 0
           delete_run_by_conclusion_pattern: action_required, cancelled, failure, skipped
+
+      - name: Delete success runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          retain_days: 1
+          keep_minimum_runs: 0
+          delete_run_by_conclusion_pattern: success
