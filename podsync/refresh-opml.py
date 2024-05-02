@@ -10,7 +10,8 @@ from pathlib import Path
 import xmltodict
 from github import gh
 from loguru import logger
-from utils import load_json, load_xml
+from utils import load_xml
+from videogram.utils import load_json
 from videogram.ytdlp import ytdlp_extract_info
 
 
@@ -19,47 +20,50 @@ def get_youtube_description(yt_channel: str) -> str:
     return info[0]["description"] if info[0]["description"].strip() else info[0]["uploader"]
 
 
-def has_update(conf_data: dict, opml_data: dict) -> bool:
-    conf_feed_names = {info["name"] for info in conf_data}
+def get_new_feeds(pod_type: str) -> tuple[bool, dict]:
+    assert pod_type in {"audio", "video"}
+    opml_path = f"{pod_type}/podsync.opml"
+    opml_data = load_xml(opml_path, template="opml")
     opml_feeds = opml_data["opml"]["body"]["outline"]
-    opml_feed_names = {Path(feed["@xmlUrl"]).stem for feed in opml_feeds}
-    return conf_feed_names != opml_feed_names
-
-
-def update_opml(conf_data: dict, opml_data: dict, pod_type: str) -> dict:
-    opml_feeds = opml_data["opml"]["body"]["outline"]
+    if isinstance(opml_feeds, dict):
+        opml_feeds = [opml_feeds]
     exist_feeds = [Path(feed["@xmlUrl"]).stem for feed in opml_feeds]
-    new_feeds = []
-    for info in conf_data:
-        if Path(info["name"]).stem in exist_feeds:
-            new_feeds.append(next(feed for feed in opml_feeds if Path(feed["@xmlUrl"]).stem == info["name"]))
-            continue
+    logger.debug(f"Found {len(exist_feeds)} existing feeds of {pod_type}")
+    conf_feed_names = []
+    for conf_file in Path(args.config_path).glob("*.json"):
+        conf_data = load_json(conf_file)
+        conf_feed_names.extend(x["name"] for x in conf_data)
+        for conf in conf_data:
+            if conf["name"] in exist_feeds:
+                continue
 
-        if yt_channel := info.get("yt_channel"):  # noqa: SIM108
-            description = get_youtube_description(yt_channel)
-        else:
-            description = info["title"]
+            if yt_channel := conf.get("yt_channel"):  # noqa: SIM108
+                description = get_youtube_description(yt_channel)
+            else:
+                description = conf["title"]
 
-        new_feeds.append(
-            {
-                "@text": description,
-                "@type": "rss",
-                "@xmlUrl": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{pod_type}/{info['name']}.xml",
-                "@title": info["title"],
-            }
-        )
-    opml_data["opml"]["body"]["outline"] = sorted(new_feeds, key=lambda x: x["@xmlUrl"])
-    return opml_data
+            opml_feeds.append(
+                {
+                    "@text": description,
+                    "@type": "rss",
+                    "@xmlUrl": f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{pod_type}/{conf['name']}.xml",
+                    "@title": conf["title"],
+                }
+            )
+    logger.debug(f"Found {len(conf_feed_names)} config feeds of {pod_type}")
+    has_update = set(exist_feeds) != set(conf_feed_names)
+    # remove feeds not in configuration any more.
+    filtered_feeds = [feed for feed in opml_feeds if Path(feed["@xmlUrl"]).stem in conf_feed_names]
+    opml_data["opml"]["body"]["outline"] = sorted(filtered_feeds, key=lambda x: x["@xmlUrl"])
+    return has_update, opml_data
 
 
 def main():
-    conf_data = load_json(args.config)
     for pod_type in ["audio", "video"]:
-        opml_path = f"{pod_type}/podsync.opml"
-        opml_data = load_xml(opml_path, template="opml")
-        if has_update(conf_data, opml_data):
-            logger.info(f"Updating {pod_type} opml file.")
-            new_opml = update_opml(conf_data, opml_data, pod_type)
+        has_update, new_opml = get_new_feeds(pod_type)
+        if has_update:
+            logger.info(f"Updating {pod_type} feeds")
+            opml_path = f"{pod_type}/podsync.opml"
             with open(opml_path, "w") as f:
                 f.write(xmltodict.unparse(new_opml, pretty=True, full_document=True))
             gh.upload_release(opml_path, pod_type)
@@ -69,7 +73,7 @@ if __name__ == "__main__":
     # parse arguments
     parser = argparse.ArgumentParser(description="Sync YouTube to Telegram")
     parser.add_argument("--log-level", type=str, default="INFO", required=False, help="Log level")
-    parser.add_argument("--config", type=str, default="config/youtube.json", required=False, help="Path to mapping json file.")
+    parser.add_argument("--config-path", type=str, default="config", required=False, help="Directory path of config json files.")
     args = parser.parse_args()
 
     # loguru settings
