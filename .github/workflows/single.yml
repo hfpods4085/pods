@@ -18,7 +18,7 @@ on:
 
 permissions: write-all
 concurrency:
-  group: ${{inputs.platform}}
+  group: ${{inputs.platform}}-${{inputs.name}}
   cancel-in-progress: false
 
 jobs:
