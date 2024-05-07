@@ -12,8 +12,8 @@ configs = load_json(config_path)
 for conf in configs:
     name = conf["name"]
     meta = load_json(f"metadata/{name}.json")
-    releases = gh.get_releases().get(name, [])
-    new_meta = [x for x in meta if f"{x['vid']}.mp4" in releases]
+    assets = gh.get_release_assets(name)
+    new_meta = [x for x in meta if f"{x['vid']}.mp4" in assets]
     if meta != new_meta:
         print(f"save {name}")
         save_json(new_meta, f"metadata/{name}.json")

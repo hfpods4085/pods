@@ -56,6 +56,12 @@ jobs:
           python podsync/scheduler.py --platform youtube --config config/youtube.json
           python podsync/scheduler.py --platform bilibili --config config/bilibili.json
 
+      - name: Clean up old assets
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python podsync/clean-up.py
+
   keepalive-job:
     name: Keepalive Workflow
     runs-on: ubuntu-latest
