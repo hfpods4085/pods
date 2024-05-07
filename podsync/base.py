@@ -83,7 +83,7 @@ class PodSync:
             logger.info(f"Syncing to Telegram: {entry['title']}")
             download_info = await sync(
                 entry["link"],
-                tg_id=self.config["tg_target"] if self.config["tg_target"] else os.environ["DEFAULT_TG_TARGET"],
+                tg_id=self.config["tg_target"] if self.config.get("tg_target") else os.environ["DEFAULT_TG_TARGET"],
                 sync_audio=not self.config.get("skip_audio", False),
                 sync_video=not self.config.get("skip_video", False),
                 use_cookie=use_cookie,

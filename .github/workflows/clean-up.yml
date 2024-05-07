@@ -1,5 +1,5 @@
 ---
-name: Weekly Cleanup
+name: Cleanup
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
 permissions: write-all
 
 jobs:
-  delete:
+  workflow:
     runs-on: ubuntu-latest
     steps:
       - name: Delete old workflow runs
@@ -38,3 +38,12 @@ jobs:
           retain_days: 1
           keep_minimum_runs: 0
           delete_run_by_conclusion_pattern: success
+  assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Delete up old assets
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python podsync/clean-up.py
