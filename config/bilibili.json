@@ -1,5 +1,14 @@
 [
   {
+    "name": "chixiaotu",
+    "cover": "https://i0.hdslb.com/bfs/face/55b48de9bc0da75593a028f058e3a03f3d600d57.jpg",
+    "uid": "432487490",
+    "skip_video": false,
+    "skip_audio": true,
+    "skip_telegram": true,
+    "title": "赤小兔"
+  },
+  {
     "name": "daijianye",
     "cover": "https://i0.hdslb.com/bfs/face/f7673d2846475c9ccf68d5f60ac38a5a48ce34a8.jpg",
     "uid": "532741557",
@@ -16,6 +25,15 @@
     "skip_audio": true,
     "skip_telegram": true,
     "title": "耿同学讲故事"
+  },
+  {
+    "name": "guantouge",
+    "cover": "https://i0.hdslb.com/bfs/face/56da33daf6f0e80e5949ab3a04dde9ec53d3bc65.jpg",
+    "uid": "288008804",
+    "skip_video": false,
+    "skip_audio": true,
+    "skip_telegram": true,
+    "title": "罐头哥"
   },
   {
     "name": "hejiaoshou",
@@ -43,6 +61,15 @@
     "skip_audio": true,
     "skip_telegram": true,
     "title": "爬爬猫头是爬律师"
+  },
+  {
+    "name": "luoshushu",
+    "cover": "https://i1.hdslb.com/bfs/face/5d2c4f3aa2336fad03027da18509fa78933b4701.jpg",
+    "uid": "28268189",
+    "skip_video": false,
+    "skip_audio": true,
+    "skip_telegram": true,
+    "title": "萝菽菽"
   },
   {
     "name": "luoxiang",
@@ -106,6 +133,15 @@
     "skip_audio": true,
     "skip_telegram": true,
     "title": "学院派Academia"
+  },
+  {
+    "name": "yilingshu",
+    "cover": "https://i2.hdslb.com/bfs/face/90b09e59146c146f75d27217a37cd92d83310328.jpg",
+    "uid": "383671544",
+    "skip_video": false,
+    "skip_audio": true,
+    "skip_telegram": true,
+    "title": "异灵术"
   },
   {
     "name": "zhuangjiyuan",

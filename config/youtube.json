@@ -4,6 +4,7 @@
     "cover": "https://yt3.ggpht.com/logMLEDtkBkPqe0P25OGymaafPMiFEn11mJv6qGL2w7b9ZdfIceuWAfQ5pW4iCkTv6uW1_i8=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UC3uODtYvKjb7gPY9EFOlUWw",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
     "tg_target": -1002025739361,
     "title": "Ariannita la Gringa | Native English Teacher"
@@ -13,8 +14,9 @@
     "cover": "https://yt3.ggpht.com/lEDHFHAjAGiYA4XRWfcbx3q12a4rN8xcKt6g9GSGawHgvnRPAHe7T4ebVDZPydPor98Is8-ICg=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCb3TZ4SD_Ys3j4z0-8o6auA",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "BBC News 中文"
   },
   {
@@ -22,6 +24,7 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_modFj7v6t_LJN1KlcxeinnngXHlx0G9WgFEJGexfzx=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCKJvfb-6icHloy6MBpHg9aw",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
     "tg_target": -1002112909248,
     "title": "毕导THU"
@@ -31,8 +34,9 @@
     "cover": "https://yt3.ggpht.com/MZvGzaX2F9s82wGL_BHbyS2_2vakLB8rZnos3esrvsPgXliYb3IrczRPT_0l7nrQywyZPwtv8D0=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCp6azASL-FiSDSP4lZiJpQg",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "小德MOMO"
   },
   {
@@ -40,6 +44,7 @@
     "cover": "https://yt3.ggpht.com/nVxolMdHCVqBuEf2EFi5xS0pXVtEOeqkBzXDvH-xFFKvVz14hA4FGwRWzmDTwbmyFbiTZwSa14E=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCwXewCWwaK1-yec8niJLrqg",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002111110536,
     "title": "中国数字时代"
@@ -49,6 +54,7 @@
     "cover": "https://yt3.ggpht.com/M-ncv4Ui2k6QzsyprBSfRxkkFRhqYLxLU-bwhDk8LDidvVGghpXnywXihU6aNKS6VfbhJiEmOuY=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCjuNibFJ21MiSNpu8LZyV4w",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002125157999,
     "title": "柴静 Chai Jing"
@@ -58,6 +64,7 @@
     "cover": "https://yt3.ggpht.com/ZdUkUUQQENdMhCGUs4fsdGtip_hZcFHSxNv0MPfDqK-n9ZIPDWhXEIVR79v7ixSt3CsUK1rm=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCvAD1cWOL6Cp0pKWTSYDZuQ",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1001707758799,
     "title": "阿发bot"
@@ -67,8 +74,9 @@
     "cover": "https://yt3.ggpht.com/wiNPXNQOVCdC22sMjKGoxe6FqolS1ojvbE24QL3eEXG8Av5cC6utgGl7mVurayBVRHbpYD3q=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCFLyhZ2Qg3eql-n4dJszumQ",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "ChinaStories"
   },
   {
@@ -76,8 +84,9 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_lajAJHtQlKQ55Ki7zUR3-T_Z5XywjL-KqRNUOtDdRtY_4=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCAq_xQV8pJ2Q_KOszzaYPBg",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "崔永元"
   },
   {
@@ -85,8 +94,9 @@
     "cover": "https://yt3.ggpht.com/wUrQLamFoEDd2_FfhiOAq_JjLT-hdoUYVaO1WmL8yjjVphnlK9BxDQ-jCBesOGcF3_RhAcU5=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCAcum7VtjCjEUpWyt6tms0Q",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "大狸子切切里"
   },
   {
@@ -94,6 +104,7 @@
     "cover": "https://yt3.ggpht.com/UvVniDpX60gZL9rwo9Jq-XLARfS-fZ3AhsHAqhMIT4Gx3ByNsLfcWsH5_pZzRWoIqMsSfxBTuiA=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCC9X5bLhdMeLvPxlMb-GShw",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002004611342,
     "title": "大问题Dialectic"
@@ -103,6 +114,7 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_lqaHauPrLEzweEsMPMuHZzzLhnGNg5SB32eus6n8gZT3M=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UC9eIq7PwD0WA-2B_Sp7xGdw",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
     "tg_target": -1002066126151,
     "title": "English Fluency Journey"
@@ -112,6 +124,7 @@
     "cover": "https://yt3.ggpht.com/FqBYckpaDvRmA2PsfbjSqxfLAr_qZgoubqEsQAC2hw9xJB9koGsVLGybm0tjMiQLLh-4uqfUKXI=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCapPWG_ppEuYvelriReTcOA",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002131292960,
     "title": "二爷故事"
@@ -121,8 +134,9 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_nrEI7QRBYhcplYKXDUPYD9fwxzvltgdTyH7Znox41goPY=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCeUJO1H3TEXu2syfAAPjYKQ",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "极客湾Geekerwan"
   },
   {
@@ -130,8 +144,9 @@
     "cover": "https://yt3.ggpht.com/1jVifaTjNuHWTaX5vIpA8q4ErPrIo3eXTC7CdUfkSky7isHWQq41f9-3dTBSM21fgzvebzon_Q=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCuPEBfHpW4hILoGuKfYKTnw",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "蘭森環遊世界"
   },
   {
@@ -139,17 +154,28 @@
     "cover": "https://yt3.ggpht.com/PRrrsP7JvFOEcWwVivcI6WgPZ0SJPFWZxneiPcIv9ia7LIIv6fHz39uziODogETIK0NMJIoa=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCZ9TdlZSewgz3VLpDcAzDaQ",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "蘭森世界觀"
+  },
+  {
+    "name": "laoliang",
+    "cover": "https://yt3.ggpht.com/ytc/AIdro_nG92ig3vkBiVQebPqGUnWeWoe2gtUZVKKnTwGVPzkklw=s800-c-k-c0x00ffffff-no-rj",
+    "yt_channel": "UCr_F4Y9iboUKlg_ZPm4jkVQ",
+    "skip_video": false,
+    "skip_audio": false,
+    "skip_shorts": true,
+    "title": "老梁"
   },
   {
     "name": "laojiang",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_l9rEdVwmf1LohIKnO9ft_rQIKORgAsLtRUxW-4adHgLw=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UClbCDB7eMVK_AW9Oq5fefHQ",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "老蒋巨靠谱"
   },
   {
@@ -157,8 +183,9 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_l22G-rsiCyK4x4Z1E--df40SgxGas8jYFtVtNvbm7tAqs=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCT3YvT4kdEiJ3up3PINhyQQ",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "老雷"
   },
   {
@@ -166,8 +193,9 @@
     "cover": "https://yt3.ggpht.com/k9xL5Mgf1Mruh06T50G1mKQouna_76IM9zTShjirU3YniQhHARNrRsoZjGOSIqb1yFEzLjb4=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCyYlGTZL-HnnX_UcGkVFH7A",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "LeLe Farley"
   },
   {
@@ -175,6 +203,7 @@
     "cover": "https://yt3.ggpht.com/lTqNDFfkcVT3tS0sJLUDdOf6qQ_J8bPJ2EPTmshGf9dLRzMZMrslZIRnL2OVONBEKgp7cEo1lw=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCrMjr7dY8syS_m9TdqM-g_Q",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002124899262,
     "title": "李老师不是你老师"
@@ -184,8 +213,9 @@
     "cover": "https://yt3.ggpht.com/ynmT3CaLpOSXG7K7E7Y1ldl4_oQvguzqVtB52SbJ5JV8GV9C2ojkR6S4hUHH7aFM7dlctpCG2O4=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCzzsHdzhQDgmZhykIzRl37A",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "马方说管理"
   },
   {
@@ -193,8 +223,9 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_lkDlyI6_T431VuOHSxKpWHU8gRowRX2jJTSWz8qgXLZg=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCLROLAN8kmU7tGQDs6KH-bQ",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "妈咪说MommyTalk"
   },
   {
@@ -202,6 +233,7 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_nDMVm9nAIkb_K6CweAyV3RzhOfDUGKCuMYHdCIsyp_wMQ=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UC2cRwTuSWxxEtrRnT4lrlQA",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
     "tg_target": -1002144037025,
     "title": "Mediastorm影视飓风"
@@ -211,6 +243,7 @@
     "cover": "https://yt3.ggpht.com/hIVJkjjSfd-a4DBTCh87r8feyY2zJTn0dcmx8jbEC9RUU8zz9Dqh6UkUjIx5g0FJKcQcd_P_=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCGjvUpbTke_87rR4OCiycBQ",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002042821664,
     "title": "Norah Yang ノーラちゃん"
@@ -220,8 +253,9 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_mGn0fGWwAs-0mveakJM4vE3lJ7LXh8lrfqUqztvL3llk8=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCgHXsynhD8GxbFcNlPEn-_w",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "Papi酱"
   },
   {
@@ -229,8 +263,9 @@
     "cover": "https://yt3.ggpht.com/Mww-UybqGpJMpKO4q7knT7cheSWFOSlGB0_3EUzhPNqU0ze_l397IeArwtXeLMqpvvOXueSAOw=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UC4QxpE043KzFdI7O4zMQ70w",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "Shiyin Official"
   },
   {
@@ -238,6 +273,7 @@
     "cover": "https://yt3.ggpht.com/IqGQPAzadxyE5cssvXpOYobdnC9N9OSdq5sHU0L6HrupyD_egJSHRQZvFcIoqO6qw5Cgn8pS=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCR4U_q_MojVVqYnawAVlryw",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002119290384,
     "title": "睡前消息"
@@ -247,6 +283,7 @@
     "cover": "https://yt3.ggpht.com/eqqE8PI2zgg8BiHjXd3TQ8MGiCx83414-1cvqS7oh3x7mj22h-CM8ZUXAAQ_2Rh4mlghp7xyp6U=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCKV2yWPB3wn0RTZh3cTD8YA",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002104453909,
     "title": "硅谷101"
@@ -256,6 +293,7 @@
     "cover": "https://yt3.ggpht.com/CkhcsHLOHH94lWB-p9kXH0sQ4DA527KXd35tKnYCpRu2reuQjDx2AKvjSZtats3AgNOzAFxf6w=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCzYYzigb1vXR0GQXXBja2kg",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002055794493,
     "title": "多伦多方脸"
@@ -265,8 +303,9 @@
     "cover": "https://yt3.ggpht.com/RZGlKBx7Ollt5TfD7d4QJBQ3TxX0of0QqUKzhkqypquB_folfctwOuLJP0CgksRLcrVxXpGmi68=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCZcmeWyuT00rnuNPmQ17Piw",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "医学博士兔叭咯"
   },
 
@@ -275,6 +314,7 @@
     "cover": "https://yt3.ggpht.com/ZC9IMkqrw-OuYVM5zU5-shKEK7DfCoym6Dl5HPcwh4pj_u5gdkJXxggDa91GZiDgwcbmPjgw4S0=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCBKDRq35-L8xev4O7ZqBeLg",
     "skip_video": false,
+    "skip_audio": false,
     "skip_shorts": true,
     "tg_target": -1002072087454,
     "title": "王志安 "
@@ -284,6 +324,7 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_klchfZxpKVFtfLRsq40iVdVXkZjdae-XfAEjb3nObDIA=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCMZZNUTkXjuWlYyB_RwxNKA",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
     "tg_target": -1001921016876,
     "title": "王师傅和小毛毛"
@@ -293,17 +334,37 @@
     "cover": "https://yt3.ggpht.com/xnkkc-bF9QVbU-iqkzZpTDYkteKCMWSVoCFXx9CiiRUrwkzNd_1Gk_iPR0YU-Y9HbIChIOOenA=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCilwQlk62k1z7aUEZPOB6yw",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
     "tg_target": -1002085992185,
     "title": "小Lin说"
+  },
+  {
+    "name": "xingzhiliao",
+    "cover": "https://yt3.ggpht.com/5G-iI2lV_UY-JlsCzJtgzEgEmZg41Hnq6smfjR0GC6F9bYNl_KKJM1Fj68hee9SiK17wntGc=s800-c-k-c0x00ffffff-no-rj",
+    "yt_channel": "UC1Pi24hwm03pmN5k0UY8hEA",
+    "skip_video": false,
+    "skip_audio": true,
+    "skip_shorts": true,
+    "title": "性致聊研究室"
+  },
+  {
+    "name": "yingjianchatan",
+    "cover": "https://yt3.ggpht.com/ytc/AIdro_kS4Q6FSD94UXlwzK5MoBFKJgK9uqG1dQNixKAnWYrrqw=s800-c-k-c0x00ffffff-no-rj",
+    "yt_channel": "UCYbH8CWlZkNgoE8EY0SoE3g",
+    "skip_video": false,
+    "skip_audio": true,
+    "skip_shorts": true,
+    "title": "硬件茶谈"
   },
   {
     "name": "yitiao",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_kKbncow9M9MlLyoA8zp_tK-ZEOXF9OEz2UpwiI51zAvSg=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCulFhrW_YCwkq_BP16C82mA",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "一条Yit"
   },
   {
@@ -311,6 +372,7 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_mQLoig2s9mol5eM__c8uivvvykDUCeA9oq3w2AwygRwQ=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCKFB_rVEFEF3l-onQGvGx1A",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
     "tg_target": -1002005247620,
     "title": "一席YiXi"
@@ -320,8 +382,9 @@
     "cover": "https://yt3.ggpht.com/ytc/AIdro_kHsHEwXdfiovvTN9EZVy1JsndcMnc0rg9iKULzfsSvlw=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCbBlOScET-le0wu9XGJFzcQ",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "Yooupi食途"
   },
   {
@@ -329,8 +392,9 @@
     "cover": "https://yt3.ggpht.com/itnzqMFsxgeI4Ugc0IoNwJAJ4S5Em-DKPsigB06rVlCgmzU4FK7ckzShsUNczsy6J1OtMfdCCnk=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UC5xunxPS6oZ1zzKufgREFuA",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "LIFEANO CLUB"
   },
   {
@@ -338,8 +402,9 @@
     "cover": "https://yt3.ggpht.com/5JarJuBXfCOkqHhZQpMFyKs9MRtkjN5-8VQPPC_TWZ1Wsd6ckBb11C1BEu4jWrpSzeifgRVGnA=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCAi2D9BWbBKzS_pXKzoTCyg",
     "skip_video": false,
+    "skip_audio": true,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "蒸気火鸡Official"
   }
 ]
