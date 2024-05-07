@@ -14,7 +14,7 @@
     "yt_channel": "UCb3TZ4SD_Ys3j4z0-8o6auA",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "BBC News 中文"
   },
   {
@@ -32,7 +32,7 @@
     "yt_channel": "UCp6azASL-FiSDSP4lZiJpQg",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "小德MOMO"
   },
   {
@@ -68,7 +68,7 @@
     "yt_channel": "UCFLyhZ2Qg3eql-n4dJszumQ",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "ChinaStories"
   },
   {
@@ -77,7 +77,7 @@
     "yt_channel": "UCAq_xQV8pJ2Q_KOszzaYPBg",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "崔永元"
   },
   {
@@ -86,7 +86,7 @@
     "yt_channel": "UCAcum7VtjCjEUpWyt6tms0Q",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "大狸子切切里"
   },
   {
@@ -122,7 +122,7 @@
     "yt_channel": "UCeUJO1H3TEXu2syfAAPjYKQ",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "极客湾Geekerwan"
   },
   {
@@ -131,7 +131,7 @@
     "yt_channel": "UCuPEBfHpW4hILoGuKfYKTnw",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "蘭森環遊世界"
   },
   {
@@ -140,7 +140,7 @@
     "yt_channel": "UCZ9TdlZSewgz3VLpDcAzDaQ",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "蘭森世界觀"
   },
   {
@@ -149,7 +149,7 @@
     "yt_channel": "UClbCDB7eMVK_AW9Oq5fefHQ",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "老蒋巨靠谱"
   },
   {
@@ -158,7 +158,7 @@
     "yt_channel": "UCT3YvT4kdEiJ3up3PINhyQQ",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "老雷"
   },
   {
@@ -167,7 +167,7 @@
     "yt_channel": "UCyYlGTZL-HnnX_UcGkVFH7A",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "LeLe Farley"
   },
   {
@@ -185,7 +185,7 @@
     "yt_channel": "UCzzsHdzhQDgmZhykIzRl37A",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "马方说管理"
   },
   {
@@ -194,7 +194,7 @@
     "yt_channel": "UCLROLAN8kmU7tGQDs6KH-bQ",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "妈咪说MommyTalk"
   },
   {
@@ -221,7 +221,7 @@
     "yt_channel": "UCgHXsynhD8GxbFcNlPEn-_w",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "Papi酱"
   },
   {
@@ -230,7 +230,7 @@
     "yt_channel": "UC4QxpE043KzFdI7O4zMQ70w",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "Shiyin Official"
   },
   {
@@ -266,7 +266,7 @@
     "yt_channel": "UCZcmeWyuT00rnuNPmQ17Piw",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "医学博士兔叭咯"
   },
 
@@ -303,7 +303,7 @@
     "yt_channel": "UCulFhrW_YCwkq_BP16C82mA",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "一条Yit"
   },
   {
@@ -321,7 +321,7 @@
     "yt_channel": "UCbBlOScET-le0wu9XGJFzcQ",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "Yooupi食途"
   },
   {
@@ -330,7 +330,7 @@
     "yt_channel": "UC5xunxPS6oZ1zzKufgREFuA",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "LIFEANO CLUB"
   },
   {
@@ -339,7 +339,7 @@
     "yt_channel": "UCAi2D9BWbBKzS_pXKzoTCyg",
     "skip_video": false,
     "skip_shorts": true,
-    "tg_target": null,
+    "skip_telegram": true,
     "title": "蒸気火鸡Official"
   }
 ]
