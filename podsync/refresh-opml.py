@@ -37,8 +37,8 @@ def get_new_feeds(pod_type: str) -> tuple[bool, dict]:
             if conf["name"] in exist_feeds:
                 continue
 
-            if yt_channel := conf.get("yt_channel"):  # noqa: SIM108
-                description = get_youtube_description(yt_channel)
+            if conf.get("yt_channel") and not conf.get(f"skip_{pod_type}"):  # noqa: SIM108
+                description = get_youtube_description(conf["yt_channel"])
             else:
                 description = conf["title"]
 
