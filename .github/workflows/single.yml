@@ -97,6 +97,15 @@ jobs:
         run: |-
           python podsync/youtube.py --name ${{inputs.name}} --config config/youtube.json
 
+      - name: Get Bilibili Cookies
+        if: ${{ inputs.platform == 'bilibili' }}
+        env:
+          COOKIE_CLOUD_SERVER: ${{ secrets.COOKIE_CLOUD_SERVER }}
+          COOKIE_CLOUD_KEY: ${{ secrets.COOKIE_CLOUD_KEY }}
+          COOKIE_CLOUD_PASS: ${{ secrets.COOKIE_CLOUD_PASS }}
+        run: |-
+          python scripts/get-cookies.py -d bilibili.com -p ~/.config/videogram/cookies/bilibili.txt --no-subdomain
+
       - name: Sync Bilibili
         if: ${{ inputs.platform == 'bilibili' }}
         env:
@@ -107,9 +116,6 @@ jobs:
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
           VIDEOGRAM_PROXY: socks5://127.0.0.1:7890
           RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
-          BILIBILI_COOKIES_BASE64: ${{ secrets.BILIBILI_COOKIES_BASE64 }}
         run: |-
-          mkdir -p ~/.config/videogram/cookies
-          echo ${{ secrets.BILIBILI_COOKIES_BASE64 }} | base64 -d > ~/.config/videogram/cookies/bilibili.txt
           nohup ~/.local/bin/v2ray -c ~/.local/bin/config.json > /dev/null 2>&1 &
           python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json
