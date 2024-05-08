@@ -42,8 +42,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install python packages
+        run: pip install loguru requests
+
       - name: Delete up old assets
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python podsync/clean-up.py
+        run: |
+          python podsync/clean-up.py
