@@ -96,6 +96,7 @@ jobs:
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
         run: |-
           python podsync/youtube.py --name ${{inputs.name}} --config config/youtube.json
+          python podsync/clean-up.py --name ${{inputs.name}} --config config/youtube.json
 
       - name: Get Bilibili Cookies
         if: ${{ inputs.platform == 'bilibili' }}
@@ -119,3 +120,4 @@ jobs:
         run: |-
           nohup ~/.local/bin/v2ray -c ~/.local/bin/config.json > /dev/null 2>&1 &
           python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json
+          python podsync/clean-up.py --name ${{inputs.name}} --config config/bilibili.json

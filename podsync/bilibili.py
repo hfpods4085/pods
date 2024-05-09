@@ -135,7 +135,7 @@ if __name__ == "__main__":
     # parse arguments
     parser = argparse.ArgumentParser(description="Sync Bilibili to Telegram")
     parser.add_argument("--log-level", type=str, default="INFO", required=False, help="Log level")
-    parser.add_argument("--config", type=str, default="config/bilibili.json", required=False, help="Path to mapping json file.")
+    parser.add_argument("--config", type=str, default="config/bilibili.json", required=False, help="Path to configuration json file.")
     parser.add_argument("--metadata-dir", type=str, default="metadata", required=False, help="Path to metadata directory.")
     parser.add_argument("--name", type=str, required=True, help="Feed name.")
     args = parser.parse_args()

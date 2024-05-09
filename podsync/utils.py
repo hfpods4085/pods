@@ -2,16 +2,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
-import os.path as osp
+from pathlib import Path
 
 import xmltodict
 from loguru import logger
 
 
-def load_xml(path: str, template: str = "rss") -> dict:
-    if osp.exists(path):
-        logger.debug(f"Loading xml from {path}")
-        with open(path) as f:
+def load_xml(path: str | Path, template: str = "rss") -> dict:
+    path = Path(path)
+    if path.exists():
+        logger.debug(f"Loading xml from {path.as_posix()}")
+        with path.open() as f:
             return xmltodict.parse(f.read())
 
     if template == "rss":
@@ -22,8 +23,10 @@ def load_xml(path: str, template: str = "rss") -> dict:
     return {"opml": {"@version": "1.0", "head": {"title": "Podcast"}, "body": {"outline": []}}}
 
 
-def save_xml(header: dict, items: list[dict], save_path: str):
+def save_xml(header: dict, items: list[dict], save_path: str | Path):
     header["rss"]["channel"]["item"] = items
     xml_str = xmltodict.unparse(header, pretty=True, full_document=True)
-    with open(save_path, "w") as f:
+    save_path = Path(save_path)
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+    with save_path.open("w") as f:
         f.write(xml_str)
