@@ -1,0 +1,13 @@
+---
+name: podsync
+
+channels:
+  - conda-forge
+
+dependencies:
+  - dateparser=1.2.0
+  - feedparser=6.0.11
+  - python=3.12
+  - xmltodict=0.13.0
+  - pip:
+      - https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.1.0.tar.gz

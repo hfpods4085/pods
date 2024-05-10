@@ -25,7 +25,7 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v4
 
       - name: fetch ffmpeg build info
         run: curl -sSLf https://johnvansickle.com/ffmpeg/git-readme.txt -o ffmpeg.info
@@ -68,13 +68,15 @@ jobs:
           curl -fsSL -o ~/.local/bin/config.json "${{ secrets.PROXY_URL }}"
           fi
 
-      - uses: actions/setup-python@v5
+      - uses: mamba-org/setup-micromamba@v1
+        name: Setup micromamba environment
         with:
-          python-version: '3.12'
-          cache: pip
-
-      - name: Install python packages
-        run: pip install -r requirements.txt
+          micromamba-version: latest
+          environment-file: environment.yml
+          environment-name: ci
+          cache-environment: true
+          cache-downloads: false
+          log-level: info
 
       - name: Download releases
         env:
@@ -87,13 +89,14 @@ jobs:
 
       - name: Sync YouTube
         if: ${{ inputs.platform == 'youtube' }}
-        timeout-minutes: 60
+        timeout-minutes: 120
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
+        shell: micromamba-shell {0}
         run: |-
           python podsync/youtube.py --name ${{inputs.name}} --config config/youtube.json
           python podsync/clean-up.py --name ${{inputs.name}} --config config/youtube.json
@@ -104,6 +107,7 @@ jobs:
           COOKIE_CLOUD_SERVER: ${{ secrets.COOKIE_CLOUD_SERVER }}
           COOKIE_CLOUD_KEY: ${{ secrets.COOKIE_CLOUD_KEY }}
           COOKIE_CLOUD_PASS: ${{ secrets.COOKIE_CLOUD_PASS }}
+        shell: micromamba-shell {0}
         run: |-
           python scripts/get-cookies.py -d bilibili.com -p ~/.config/videogram/cookies/bilibili.txt --no-subdomain
 
@@ -117,6 +121,7 @@ jobs:
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
           VIDEOGRAM_PROXY: socks5://127.0.0.1:7890
           RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
+        shell: micromamba-shell {0}
         run: |-
           nohup ~/.local/bin/v2ray -c ~/.local/bin/config.json > /dev/null 2>&1 &
           python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json

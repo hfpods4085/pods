@@ -11,7 +11,7 @@ on:
       - config/**
       - podsync/scheduler.py
       - podsync/refresh-opml.py
-      - requirements.txt
+      - environment.yml
   schedule:
     - cron: 17 * * * *
 
@@ -24,20 +24,23 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - uses: mamba-org/setup-micromamba@v1
+        name: Setup micromamba environment
         with:
-          python-version: '3.12'
-          cache: pip
-
-      - name: Install python packages
-        run: pip install -r requirements.txt
+          micromamba-version: latest
+          environment-file: environment.yml
+          environment-name: ci
+          cache-environment: true
+          cache-downloads: false
+          log-level: info
 
       - name: Refresh OPML
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: micromamba-shell {0}
         run: |-
           gh release download audio -D audio --clobber --pattern podsync.opml
           gh release download video -D video --clobber --pattern podsync.opml
@@ -51,15 +54,8 @@ jobs:
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
           RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
+        shell: micromamba-shell {0}
         run: |-
           gh release download metadata -D metadata --clobber
           python podsync/scheduler.py --platform youtube --config config/youtube.json
           python podsync/scheduler.py --platform bilibili --config config/bilibili.json
-
-
-  keepalive-job:
-    name: Keepalive Workflow
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@main
-      - uses: gautamkrishnar/keepalive-workflow@v2
