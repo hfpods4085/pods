@@ -111,6 +111,12 @@ jobs:
         run: |-
           python scripts/get-cookies.py -d bilibili.com -p ~/.config/videogram/cookies/bilibili.txt --no-subdomain
 
+      - name: Set proxy for Bilibili
+        if: ${{ inputs.platform == 'bilibili' }}
+        shell: bash
+        run: |-
+          nohup ~/.local/bin/v2ray -c ~/.local/bin/config.json > /dev/null 2>&1 &
+
       - name: Sync Bilibili
         if: ${{ inputs.platform == 'bilibili' }}
         env:
@@ -123,6 +129,5 @@ jobs:
           RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
         shell: micromamba-shell {0}
         run: |-
-          nohup ~/.local/bin/v2ray -c ~/.local/bin/config.json > /dev/null 2>&1 &
           python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json
           python podsync/clean-up.py --name ${{inputs.name}} --config config/bilibili.json
