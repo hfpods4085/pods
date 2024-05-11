@@ -151,6 +151,6 @@ class PodSync:
         if isinstance(cached_items, dict):
             cached_items = [cached_items]
         pod_items.extend(cached_items)
-        pod_header = generate_pod_header(feed, self.config)
+        pod_header = generate_pod_header(feed, self.config, pod_type)
         save_xml(pod_header, pod_items, f"{pod_type}/{self.name}.xml")
         gh.upload_release(f"{pod_type}/{self.name}.xml", pod_type)

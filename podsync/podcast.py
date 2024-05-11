@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import uuid
 from datetime import datetime
 from typing import TYPE_CHECKING
 from zoneinfo import ZoneInfo
@@ -15,15 +16,17 @@ if TYPE_CHECKING:
 """Apple Podcast Specification
 
 https://help.apple.com/itc/podcasts_connect/#/itcb54353390
+https://github.com/Podcast-Standards-Project/PSP-1-Podcast-RSS-Specification
 """
 
 
-def generate_pod_header(feed_info: dict, config: dict) -> dict:
+def generate_pod_header(feed_info: dict, config: dict, pod_type: str) -> dict:
     """Generate podcast header for RSS feed.
 
     Args:
         feed_info (dict): feed info parsed from feedparser
         config (dict): custom configuration of this feed
+        pod_type (str): podcast type. Choices: "audio", "video"
 
     Returns:
         dict: header of RSS feed
@@ -35,20 +38,30 @@ def generate_pod_header(feed_info: dict, config: dict) -> dict:
         pub_date = dateparser.parse(feed_info["updated"], settings={"TO_TIMEZONE": os.getenv("TZ", "UTC")})
     else:
         pub_date = now
+    feed_url = f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{pod_type}/{config['name']}.xml"
     return {
         "rss": {
             "@version": "2.0",
             "@xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
             "@xmlns:podcast": "https://podcastindex.org/namespace/1.0",
+            "xmlns:atom": "http://www.w3.org/2005/Atom",
+            "xmlns:content": "http://purl.org/rss/1.0/modules/content/",
             "channel": {
                 # Required tags
+                "atom:link": {
+                    "@href": feed_url,
+                    "@rel": "self",
+                    "@type": "application/rss+xml",
+                },
                 "title": config.get("title", feed_info["title"]),
                 "description": config.get("description", feed_info["title"]),
                 "itunes:image": {"@href": config["cover"]},
                 "language": "en-us",
                 "itunes:category": {"@text": "TV & Film"},
-                "itunes:explicit": "no",
+                "itunes:explicit": "false",
                 # Recommended tags
+                "podcast:locked": "yes",
+                "podcast:guid": generate_podcast_uuid(feed_url),
                 "itunes:author": config.get("title", feed_info["title"]),
                 "link": feed_info["link"],
                 # Situational tags
@@ -112,12 +125,28 @@ def generate_pod_item(
         # Required tags
         "title": feed_entry["title"],
         "enclosure": enclosure,
-        "guid": filepath.stem,
+        "guid": feed_entry["link"],
         # Recommended tags
         "pubDate": f"{pub_date:%a, %d %b %Y %H:%M:%S %z}",
         "description": feed_entry["summary"],
         "itunes:duration": duration,
         "link": feed_entry["link"],
         "itunes:image": {"@href": cover},
-        "itunes:explicit": "no",
+        "itunes:explicit": "false",
     }
+
+
+def generate_podcast_uuid(url: str):
+    """Generate podcast UUID from URL.
+
+    Docs: https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid
+    The value is a UUIDv5, and is generated from the RSS feed url,
+    with the protocol scheme and trailing slashes stripped off,
+    combined with a unique "podcast" namespace which has a UUID of ead4c236-bf58-58c6-a2c6-a6b28d128cb6
+
+    Args:
+        url (str): feed url
+    """
+    url = url.strip().strip("/").removeprefix("http://").removeprefix("https://")
+    pod_uuid = uuid.uuid5(uuid.UUID("ead4c236-bf58-58c6-a2c6-a6b28d128cb6"), url)
+    return str(pod_uuid)
