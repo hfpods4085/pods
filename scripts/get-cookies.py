@@ -4,7 +4,6 @@ import argparse
 import json
 import os
 import sys
-import urllib.parse
 from pathlib import Path
 
 import requests
@@ -28,7 +27,7 @@ def netscape_format(cookies: list) -> str:
         logger.info(f'''Get cookie "{cookie['name']}" of domain "{cookie['domain']}"''')
         subdomains = "FALSE" if cookie["hostOnly"] else "TRUE"
         secure = "TRUE" if cookie["secure"] else "FALSE"
-        cookie_str += f"{cookie['domain']}\t{subdomains}\t{cookie['path']}\t{secure}\t{round(cookie.get('expirationDate', 0))}\t{cookie['name']}\t{urllib.parse.quote_plus(cookie['value'])}\n"
+        cookie_str += f"{cookie['domain']}\t{subdomains}\t{cookie['path']}\t{secure}\t{round(cookie.get('expirationDate', 0))}\t{cookie['name']}\t{cookie['value']}\n"
     return cookie_str
 
 
