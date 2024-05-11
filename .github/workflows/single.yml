@@ -27,8 +27,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: fetch ffmpeg build info
-        run: curl -sSLf https://johnvansickle.com/ffmpeg/git-readme.txt -o ffmpeg.info
+      - name: fetch ffmpeg md5
+        run: curl -sSLf https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz.md5 -o ffmpeg.md5
 
       - uses: actions/cache@v4
         id: cache-ffmpeg
@@ -36,7 +36,7 @@ jobs:
           path: |
             ~/.local/bin/ffmpeg
             ~/.local/bin/ffprobe
-          key: ${{ runner.os }}-ffmpeg-${{ hashFiles('ffmpeg.info') }}
+          key: ${{ runner.os }}-ffmpeg-${{ hashFiles('ffmpeg.md5') }}
 
       - name: Install ffmpeg
         if: steps.cache-ffmpeg.outputs.cache-hit != 'true'
