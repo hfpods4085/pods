@@ -99,7 +99,7 @@ jobs:
         shell: micromamba-shell {0}
         run: |-
           python podsync/youtube.py --name ${{inputs.name}} --config config/youtube.json
-          python podsync/clean-up.py --name ${{inputs.name}} --config config/youtube.json
+          python podsync/clean-up.py --name ${{inputs.name}} --config config/youtube.json --keep 40
 
       - name: Get Bilibili Cookies
         if: ${{ inputs.platform == 'bilibili' }}
@@ -130,4 +130,4 @@ jobs:
         shell: micromamba-shell {0}
         run: |-
           python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json
-          python podsync/clean-up.py --name ${{inputs.name}} --config config/bilibili.json
+          python podsync/clean-up.py --name ${{inputs.name}} --config config/bilibili.json --keep 40
