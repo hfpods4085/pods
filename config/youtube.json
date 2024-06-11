@@ -11,17 +11,6 @@
     "title": "Ariannita la Gringa | Native English Teacher"
   },
   {
-    "name": "bbc",
-    "cover": "https://yt3.ggpht.com/lEDHFHAjAGiYA4XRWfcbx3q12a4rN8xcKt6g9GSGawHgvnRPAHe7T4ebVDZPydPor98Is8-ICg=s800-c-k-c0x00ffffff-no-rj",
-    "yt_channel": "UCb3TZ4SD_Ys3j4z0-8o6auA",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_shorts": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "BBC News 中文"
-  },
-  {
     "name": "bidaothu",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_modFj7v6t_LJN1KlcxeinnngXHlx0G9WgFEJGexfzx=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCKJvfb-6icHloy6MBpHg9aw",
@@ -154,17 +143,6 @@
     "title": "极客湾Geekerwan"
   },
   {
-    "name": "genshin",
-    "cover": "https://i2.hdslb.com/bfs/face/37ae7362f75cff540259b23413aec6803d2d8dcd.jpg",
-    "yt_channel": "UCiS882YPwZt1NfaM0gR0D9Q",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_shorts": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "原神"
-  },
-  {
     "name": "keleyanjiushe",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_lXvU67rzmFeDMVn1oTy4vRvnQhNrU9nkDz7JibRiM7Ow=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCMJqji98-EZFgWRhVwwcRbw",
@@ -251,17 +229,6 @@
     "skip_telegram": false,
     "tg_target": null,
     "title": "李老师不是你老师"
-  },
-  {
-    "name": "mafang",
-    "cover": "https://yt3.ggpht.com/ynmT3CaLpOSXG7K7E7Y1ldl4_oQvguzqVtB52SbJ5JV8GV9C2ojkR6S4hUHH7aFM7dlctpCG2O4=s800-c-k-c0x00ffffff-no-rj",
-    "yt_channel": "UCzzsHdzhQDgmZhykIzRl37A",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_shorts": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "马方说管理"
   },
   {
     "name": "mianyangliaoli",
@@ -384,17 +351,6 @@
     "skip_telegram": false,
     "tg_target": null,
     "title": "王志安 "
-  },
-  {
-    "name": "wsfandxmm",
-    "cover": "https://yt3.ggpht.com/ytc/AIdro_klchfZxpKVFtfLRsq40iVdVXkZjdae-XfAEjb3nObDIA=s800-c-k-c0x00ffffff-no-rj",
-    "yt_channel": "UCMZZNUTkXjuWlYyB_RwxNKA",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_shorts": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "王师傅和小毛毛"
   },
   {
     "name": "xiaolinshuo",
