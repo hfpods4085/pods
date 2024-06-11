@@ -253,17 +253,6 @@
     "title": "李老师不是你老师"
   },
   {
-    "name": "mafang",
-    "cover": "https://yt3.ggpht.com/ynmT3CaLpOSXG7K7E7Y1ldl4_oQvguzqVtB52SbJ5JV8GV9C2ojkR6S4hUHH7aFM7dlctpCG2O4=s800-c-k-c0x00ffffff-no-rj",
-    "yt_channel": "UCzzsHdzhQDgmZhykIzRl37A",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_shorts": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "马方说管理"
-  },
-  {
     "name": "mianyangliaoli",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_m8QmbUcl3Np7JvLzrAZRkir5cbp7RVOnq15T7-odckPww=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCiAuybSv94YrdXhrGECtAxQ",
@@ -384,17 +373,6 @@
     "skip_telegram": false,
     "tg_target": null,
     "title": "王志安 "
-  },
-  {
-    "name": "wsfandxmm",
-    "cover": "https://yt3.ggpht.com/ytc/AIdro_klchfZxpKVFtfLRsq40iVdVXkZjdae-XfAEjb3nObDIA=s800-c-k-c0x00ffffff-no-rj",
-    "yt_channel": "UCMZZNUTkXjuWlYyB_RwxNKA",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_shorts": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "王师傅和小毛毛"
   },
   {
     "name": "xiaolinshuo",
