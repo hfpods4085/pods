@@ -11,6 +11,7 @@ from podcast import generate_pod_header, generate_pod_item
 from utils import load_xml, save_xml
 from videogram.utils import load_json, save_json
 from videogram.videogram import download, sync
+from yt_dlp.utils import YoutubeDLError
 
 
 class PodSync:
@@ -76,19 +77,23 @@ class PodSync:
 
         if not checked_entry_result["need_download"]:
             return res
-        if self.config.get("skip_telegram"):
-            logger.info(f"Downloading: {entry['title']}")
-            download_info = download(entry["link"], split_video=True, use_cookie=use_cookie)
-        else:
-            logger.info(f"Syncing to Telegram: {entry['title']}")
-            download_info = await sync(
-                entry["link"],
-                tg_id=self.config["tg_target"] if self.config.get("tg_target") else os.environ["DEFAULT_TG_TARGET"],
-                sync_audio=not self.config.get("skip_audio", False),
-                sync_video=not self.config.get("skip_video", False),
-                use_cookie=use_cookie,
-                clean=False,
-            )
+        try:
+            if self.config.get("skip_telegram"):
+                logger.info(f"Downloading: {entry['title']}")
+                download_info = download(entry["link"], split_video=True, use_cookie=use_cookie)
+            else:
+                logger.info(f"Syncing to Telegram: {entry['title']}")
+                download_info = await sync(
+                    entry["link"],
+                    tg_id=self.config["tg_target"] if self.config.get("tg_target") else os.environ["DEFAULT_TG_TARGET"],
+                    sync_audio=not self.config.get("skip_audio", False),
+                    sync_video=not self.config.get("skip_video", False),
+                    use_cookie=use_cookie,
+                    clean=False,
+                )
+        except YoutubeDLError as e:
+            logger.error(e.msg)
+            return res
         res["download_info"] = download_info
         return res
 
