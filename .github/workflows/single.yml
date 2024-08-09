@@ -27,16 +27,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: fetch ffmpeg md5
-        run: curl -sSLf https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz.md5 -o ffmpeg.md5
-
       - uses: actions/cache@v4
         id: cache-ffmpeg
         with:
           path: |
             ~/.local/bin/ffmpeg
             ~/.local/bin/ffprobe
-          key: ${{ runner.os }}-ffmpeg-${{ hashFiles('ffmpeg.md5') }}
+          key: ${{ runner.os }}-ffmpeg
 
       - name: Install ffmpeg
         if: steps.cache-ffmpeg.outputs.cache-hit != 'true'
@@ -55,6 +52,7 @@ jobs:
           environment-file: environment.yml
           environment-name: ci
           cache-environment: true
+          cache-environment-key: ${{ hashFiles('**/requirements.txt') }}
           cache-downloads: false
           log-level: info
 
