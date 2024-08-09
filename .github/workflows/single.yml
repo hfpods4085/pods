@@ -48,26 +48,6 @@ jobs:
           tar --extract --strip-components=1 --file /tmp/ffmpeg.tar.gz -C ~/.local/bin/ --wildcards '*/ffmpeg' '*/ffprobe'
           fi
 
-      - uses: actions/cache@v4
-        id: cache-proxy
-        with:
-          path: |
-            ~/.local/bin/v2ray
-            ~/.local/bin/config.json
-          key: ${{ runner.os }}-proxy
-
-      - name: Install proxy
-        if: steps.cache-proxy.outputs.cache-hit != 'true'
-        shell: bash
-        run: |
-          if [ ! -x "$HOME/.local/bin/v2ray" ]; then
-          mkdir -p ~/.local/bin
-          curl -fsSL -o /tmp/v2ray.zip "https://github.com/v2fly/v2ray-core/releases/download/v4.45.2/v2ray-linux-64.zip"
-          unzip -d /tmp /tmp/v2ray.zip
-          mv /tmp/v2ray ~/.local/bin
-          curl -fsSL -o ~/.local/bin/config.json "${{ secrets.PROXY_URL }}"
-          fi
-
       - uses: mamba-org/setup-micromamba@v1
         name: Setup micromamba environment
         with:
@@ -96,6 +76,7 @@ jobs:
           DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
+          VIDEOGRAM_PROXY: ${{ secrets.PROXY_URL }}
         shell: micromamba-shell {0}
         run: |-
           python podsync/youtube.py --name ${{inputs.name}} --config config/youtube.json
@@ -111,22 +92,17 @@ jobs:
         run: |-
           python scripts/get-cookies.py -d bilibili.com -p ~/.config/videogram/cookies/bilibili.txt --no-subdomain
 
-      - name: Set proxy for Bilibili
-        if: ${{ inputs.platform == 'bilibili' }}
-        shell: bash
-        run: |-
-          nohup ~/.local/bin/v2ray -c ~/.local/bin/config.json > /dev/null 2>&1 &
-
       - name: Sync Bilibili
         if: ${{ inputs.platform == 'bilibili' }}
+        timeout-minutes: 120
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
-          VIDEOGRAM_PROXY: socks5://127.0.0.1:7890
           RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
+          VIDEOGRAM_PROXY: ${{ secrets.PROXY_URL }}
         shell: micromamba-shell {0}
         run: |-
           python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json
