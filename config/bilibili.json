@@ -20,16 +20,6 @@
     "title": "毕导THU"
   },
   {
-    "name": "dalizi",
-    "cover": "https://yt3.ggpht.com/wUrQLamFoEDd2_FfhiOAq_JjLT-hdoUYVaO1WmL8yjjVphnlK9BxDQ-jCBesOGcF3_RhAcU5=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "471303350",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "大狸子切切里"
-  },
-  {
     "name": "daijianye",
     "cover": "https://i0.hdslb.com/bfs/face/f7673d2846475c9ccf68d5f60ac38a5a48ce34a8.jpg",
     "uid": "532741557",
@@ -68,16 +58,6 @@
     "skip_telegram": false,
     "tg_target": null,
     "title": "耿同学讲故事"
-  },
-  {
-    "name": "genshin",
-    "cover": "https://i2.hdslb.com/bfs/face/37ae7362f75cff540259b23413aec6803d2d8dcd.jpg",
-    "uid": "401742377",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "原神"
   },
   {
     "name": "guantouge",
@@ -120,16 +100,6 @@
     "title": "极客湾Geekerwan"
   },
   {
-    "name": "katulupijun",
-    "cover": "https://i0.hdslb.com/bfs/face/24eb7074918504815ffe1d3ac4fa0521a3a8e885.jpg",
-    "uid": "433004026",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "卡秃噜皮君"
-  },
-  {
     "name": "laojiang",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_l9rEdVwmf1LohIKnO9ft_rQIKORgAsLtRUxW-4adHgLw=s800-c-k-c0x00ffffff-no-rj",
     "uid": "119801456",
@@ -158,26 +128,6 @@
     "skip_telegram": false,
     "tg_target": null,
     "title": "爬爬猫头是爬律师"
-  },
-  {
-    "name": "leijun",
-    "cover": "https://i1.hdslb.com/bfs/face/569dec5aeab5ad650ecdee0c1d8965512d32657c.jpg",
-    "uid": "646730844",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "雷军"
-  },
-  {
-    "name": "luoshushu",
-    "cover": "https://i1.hdslb.com/bfs/face/5d2c4f3aa2336fad03027da18509fa78933b4701.jpg",
-    "uid": "28268189",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "萝菽菽"
   },
   {
     "name": "luoxiang",
@@ -220,26 +170,6 @@
     "title": "妈咪说MommyTalk"
   },
   {
-    "name": "norahcomedy",
-    "cover": "https://yt3.ggpht.com/hIVJkjjSfd-a4DBTCh87r8feyY2zJTn0dcmx8jbEC9RUU8zz9Dqh6UkUjIx5g0FJKcQcd_P_=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "29404012",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "Norah脱口秀"
-  },
-  {
-    "name": "papijiang",
-    "cover": "https://yt3.ggpht.com/ytc/AIdro_mGn0fGWwAs-0mveakJM4vE3lJ7LXh8lrfqUqztvL3llk8=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "1532165",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "Papi酱"
-  },
-  {
     "name": "shenyifei",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_nH_uIqFoJ5uwadvs_dAV4-G9pRMnsqeKhcQIeny8tJDQ=s800-c-k-c0x00ffffff-no-rj",
     "uid": "349092963",
@@ -260,16 +190,6 @@
     "title": "Shiyin Official"
   },
   {
-    "name": "shuiqianxiaoxi",
-    "cover": "https://yt3.ggpht.com/IqGQPAzadxyE5cssvXpOYobdnC9N9OSdq5sHU0L6HrupyD_egJSHRQZvFcIoqO6qw5Cgn8pS=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "1556651916",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "睡前消息"
-  },
-  {
     "name": "siliconvalley101",
     "cover": "https://yt3.ggpht.com/eqqE8PI2zgg8BiHjXd3TQ8MGiCx83414-1cvqS7oh3x7mj22h-CM8ZUXAAQ_2Rh4mlghp7xyp6U=s800-c-k-c0x00ffffff-no-rj",
     "uid": "508452265",
@@ -278,16 +198,6 @@
     "skip_telegram": false,
     "tg_target": null,
     "title": "硅谷101"
-  },
-  {
-    "name": "ttkp",
-    "cover": "https://i0.hdslb.com/bfs/face/355a81531dfb772fc96509b402121a3fe8ff143b.jpg",
-    "uid": "10462362",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "天天卡牌"
   },
   {
     "name": "tubage",
@@ -340,16 +250,6 @@
     "title": "硬件茶谈"
   },
   {
-    "name": "yitiao",
-    "cover": "https://yt3.ggpht.com/ytc/AIdro_kKbncow9M9MlLyoA8zp_tK-ZEOXF9OEz2UpwiI51zAvSg=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "4543111",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "一条Yit"
-  },
-  {
     "name": "yixi",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_mQLoig2s9mol5eM__c8uivvvykDUCeA9oq3w2AwygRwQ=s800-c-k-c0x00ffffff-no-rj",
     "uid": "26079128",
@@ -378,15 +278,5 @@
     "skip_telegram": false,
     "tg_target": null,
     "title": "蒸気火鸡Official"
-  },
-  {
-    "name": "zhuangjiyuan",
-    "cover": "https://i1.hdslb.com/bfs/face/ec008e32064705c576f3ffd73d20288e441d945f.jpg",
-    "uid": "35359510",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "远古时代装机猿"
   }
 ]
