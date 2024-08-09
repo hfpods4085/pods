@@ -55,17 +55,6 @@
     "title": "ChinaStories"
   },
   {
-    "name": "cui_news",
-    "cover": "https://yt3.googleusercontent.com/v1Iw2d6u0zvKRdAjxwfchQFcB9yWxD664Yq2aiuh-L2to1Zj6H8q0g1u_dclyN3aob2iolQkKg",
-    "yt_channel": "UCOhck8oLoIwSJzmwYMXsSnQ",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_shorts": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "小翠时政财经"
-  },
-  {
     "name": "cuiyongyuan",
     "cover": "https://yt3.ggpht.com/ytc/AIdro_lajAJHtQlKQ55Ki7zUR3-T_Z5XywjL-KqRNUOtDdRtY_4=s800-c-k-c0x00ffffff-no-rj",
     "yt_channel": "UCAq_xQV8pJ2Q_KOszzaYPBg",

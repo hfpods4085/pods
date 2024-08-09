@@ -5,7 +5,7 @@
     "uid": "58617276",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "回到2049"
   },
@@ -15,19 +15,9 @@
     "uid": "254463269",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "毕导THU"
-  },
-  {
-    "name": "dalizi",
-    "cover": "https://yt3.ggpht.com/wUrQLamFoEDd2_FfhiOAq_JjLT-hdoUYVaO1WmL8yjjVphnlK9BxDQ-jCBesOGcF3_RhAcU5=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "471303350",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "大狸子切切里"
   },
   {
     "name": "daijianye",
@@ -35,7 +25,7 @@
     "uid": "532741557",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "戴建业老师"
   },
@@ -45,7 +35,7 @@
     "uid": "1871365234",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "大问题Dialectic"
   },
@@ -55,7 +45,7 @@
     "uid": "35847683",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "峰哥亡命天涯"
   },
@@ -65,19 +55,9 @@
     "uid": "1732848825",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "耿同学讲故事"
-  },
-  {
-    "name": "genshin",
-    "cover": "https://i2.hdslb.com/bfs/face/37ae7362f75cff540259b23413aec6803d2d8dcd.jpg",
-    "uid": "401742377",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "原神"
   },
   {
     "name": "guantouge",
@@ -85,7 +65,7 @@
     "uid": "288008804",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "罐头哥"
   },
@@ -95,7 +75,7 @@
     "uid": "1010101551",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "来自星星的何教授"
   },
@@ -105,7 +85,7 @@
     "uid": "49869761",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "户晨风"
   },
@@ -115,19 +95,9 @@
     "uid": "25876945",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "极客湾Geekerwan"
-  },
-  {
-    "name": "katulupijun",
-    "cover": "https://i0.hdslb.com/bfs/face/24eb7074918504815ffe1d3ac4fa0521a3a8e885.jpg",
-    "uid": "433004026",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "卡秃噜皮君"
   },
   {
     "name": "laojiang",
@@ -135,7 +105,7 @@
     "uid": "119801456",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "老蒋巨靠谱"
   },
@@ -145,7 +115,7 @@
     "uid": "1137066730",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "牢头养猪记"
   },
@@ -155,29 +125,9 @@
     "uid": "10216010",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "爬爬猫头是爬律师"
-  },
-  {
-    "name": "leijun",
-    "cover": "https://i1.hdslb.com/bfs/face/569dec5aeab5ad650ecdee0c1d8965512d32657c.jpg",
-    "uid": "646730844",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "雷军"
-  },
-  {
-    "name": "luoshushu",
-    "cover": "https://i1.hdslb.com/bfs/face/5d2c4f3aa2336fad03027da18509fa78933b4701.jpg",
-    "uid": "28268189",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "萝菽菽"
   },
   {
     "name": "luoxiang",
@@ -185,7 +135,7 @@
     "uid": "517327498",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "罗翔说刑法"
   },
@@ -195,7 +145,7 @@
     "uid": "946974",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "Mediastorm影视飓风"
   },
@@ -205,7 +155,7 @@
     "uid": "18202105",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "绵羊料理"
   },
@@ -215,29 +165,9 @@
     "uid": "223146252",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "妈咪说MommyTalk"
-  },
-  {
-    "name": "norahcomedy",
-    "cover": "https://yt3.ggpht.com/hIVJkjjSfd-a4DBTCh87r8feyY2zJTn0dcmx8jbEC9RUU8zz9Dqh6UkUjIx5g0FJKcQcd_P_=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "29404012",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "Norah脱口秀"
-  },
-  {
-    "name": "papijiang",
-    "cover": "https://yt3.ggpht.com/ytc/AIdro_mGn0fGWwAs-0mveakJM4vE3lJ7LXh8lrfqUqztvL3llk8=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "1532165",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "Papi酱"
   },
   {
     "name": "shenyifei",
@@ -245,7 +175,7 @@
     "uid": "349092963",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "沈奕斐"
   },
@@ -255,19 +185,9 @@
     "uid": "257975429",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "Shiyin Official"
-  },
-  {
-    "name": "shuiqianxiaoxi",
-    "cover": "https://yt3.ggpht.com/IqGQPAzadxyE5cssvXpOYobdnC9N9OSdq5sHU0L6HrupyD_egJSHRQZvFcIoqO6qw5Cgn8pS=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "1556651916",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "睡前消息"
   },
   {
     "name": "siliconvalley101",
@@ -275,19 +195,9 @@
     "uid": "508452265",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "硅谷101"
-  },
-  {
-    "name": "ttkp",
-    "cover": "https://i0.hdslb.com/bfs/face/355a81531dfb772fc96509b402121a3fe8ff143b.jpg",
-    "uid": "10462362",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "天天卡牌"
   },
   {
     "name": "tubage",
@@ -295,7 +205,7 @@
     "uid": "7788379",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "医学博士兔叭咯"
   },
@@ -305,7 +215,7 @@
     "uid": "452606628",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "王师傅和小毛毛"
   },
@@ -315,7 +225,7 @@
     "uid": "520819684",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "小Lin说"
   },
@@ -325,7 +235,7 @@
     "uid": "96639395",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "学院派Academia"
   },
@@ -335,19 +245,9 @@
     "uid": "14871346",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "硬件茶谈"
-  },
-  {
-    "name": "yitiao",
-    "cover": "https://yt3.ggpht.com/ytc/AIdro_kKbncow9M9MlLyoA8zp_tK-ZEOXF9OEz2UpwiI51zAvSg=s800-c-k-c0x00ffffff-no-rj",
-    "uid": "4543111",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "一条Yit"
   },
   {
     "name": "yixi",
@@ -355,7 +255,7 @@
     "uid": "26079128",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "一席YiXi"
   },
@@ -365,7 +265,7 @@
     "uid": "452412746",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "Yooupi食途"
   },
@@ -375,18 +275,8 @@
     "uid": "39180492",
     "skip_video": false,
     "skip_audio": true,
-    "skip_telegram": false,
+    "skip_telegram": true,
     "tg_target": null,
     "title": "蒸気火鸡Official"
-  },
-  {
-    "name": "zhuangjiyuan",
-    "cover": "https://i1.hdslb.com/bfs/face/ec008e32064705c576f3ffd73d20288e441d945f.jpg",
-    "uid": "35359510",
-    "skip_video": false,
-    "skip_audio": true,
-    "skip_telegram": false,
-    "tg_target": null,
-    "title": "远古时代装机猿"
   }
 ]

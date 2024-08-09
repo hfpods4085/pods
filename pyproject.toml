@@ -2,14 +2,15 @@
 authors = ["hfpods4085 <166705635+hfpods4085@users.noreply.github.com>"]
 description = ""
 name = "podsync"
+package-mode = false
 readme = "README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
 dateparser = ">=1.2.0"
 feedparser = ">=6.0.11"
-python = "^3.11"
-videogram = { url = "https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.1.0.tar.gz" }
+python = "^3.12"
+videogram = { url = "https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.4.6.tar.gz" }
 xmltodict = ">=0.13.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -18,3 +19,6 @@ ipdb = ">=0.13.13"
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
+
+[tool.pyright]
+extraPaths = ["podsync"]
