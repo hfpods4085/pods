@@ -33,6 +33,7 @@ jobs:
           environment-file: environment.yml
           environment-name: ci
           cache-environment: true
+          cache-environment-key: ${{ hashFiles('**/requirements.txt') }}
           cache-downloads: false
           log-level: info
 

@@ -9,5 +9,6 @@ dependencies:
   - feedparser=6.0.11
   - python=3.12
   - xmltodict=0.13.0
+  - yt-dlp=2024.8.6
   - pip:
       - https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.1.0.tar.gz
