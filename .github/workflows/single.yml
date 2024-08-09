@@ -87,6 +87,11 @@ jobs:
           gh release download audio -D audio --clobber --pattern ${{inputs.name}}.xml || true
           gh release download video -D video --clobber --pattern ${{inputs.name}}.xml || true
 
+      - name: Set proxy
+        shell: bash
+        run: |-
+          nohup ~/.local/bin/v2ray -c ~/.local/bin/config.json > /dev/null 2>&1 &
+
       - name: Sync YouTube
         if: ${{ inputs.platform == 'youtube' }}
         timeout-minutes: 120
@@ -96,6 +101,7 @@ jobs:
           DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
+          VIDEOGRAM_PROXY: socks5://127.0.0.1:7890
         shell: micromamba-shell {0}
         run: |-
           python podsync/youtube.py --name ${{inputs.name}} --config config/youtube.json
@@ -110,12 +116,6 @@ jobs:
         shell: micromamba-shell {0}
         run: |-
           python scripts/get-cookies.py -d bilibili.com -p ~/.config/videogram/cookies/bilibili.txt --no-subdomain
-
-      - name: Set proxy for Bilibili
-        if: ${{ inputs.platform == 'bilibili' }}
-        shell: bash
-        run: |-
-          nohup ~/.local/bin/v2ray -c ~/.local/bin/config.json > /dev/null 2>&1 &
 
       - name: Sync Bilibili
         if: ${{ inputs.platform == 'bilibili' }}
