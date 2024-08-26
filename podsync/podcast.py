@@ -123,7 +123,7 @@ def generate_pod_item(
 
     return {
         # Required tags
-        "title": feed_entry["title"],
+        "title": f"【{filepath.stat().st_size/1024/1024:.0f}MB】{feed_entry['title']}",
         "enclosure": enclosure,
         "guid": feed_entry["link"],
         # Recommended tags
