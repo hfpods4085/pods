@@ -90,7 +90,7 @@ async def main():
             logger.debug(f"Skip processed: {entry['title']}")
             continue
         logger.info(f"New video found: [{entry['link']}] {entry['title']}")
-        res = await bilibili.process_single_entry(entry, use_cookie=True)
+        res = await bilibili.process_single_entry(entry, use_cookie=False)
 
         # Update
         bilibili.update_database(res["entry_info"])
