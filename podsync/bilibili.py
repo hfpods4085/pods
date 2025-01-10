@@ -15,7 +15,7 @@ from base import PodSync
 from loguru import logger
 from videogram.utils import delete_files, load_json
 from videogram.ytdlp import ytdlp_extract_info
-from yt_dlp.utils import DownloadError, ExtractorError, YoutubeDLError
+from yt_dlp.utils import DownloadError, ExtractorError
 
 
 class Bilibili(PodSync):
@@ -68,9 +68,9 @@ class Bilibili(PodSync):
                 logger.warning(f"Skip deleted or geo-restricted video: {entry['title']}")
                 return res
             raise
-        except YoutubeDLError as e:
-            logger.error(f"YoutubeDLError: {e.msg}")
-            raise
+        except Exception as e:  # noqa: BLE001
+            logger.error(e)
+            return res
         logger.warning(f"Found a new video: {entry['title']}")
         res["need_download"] = True
         return res
@@ -91,7 +91,6 @@ async def main():
             continue
         logger.info(f"New video found: [{entry['link']}] {entry['title']}")
         res = await bilibili.process_single_entry(entry, use_cookie=False)
-
         # Update
         bilibili.update_database(res["entry_info"])
         if not res["download_info"]:
