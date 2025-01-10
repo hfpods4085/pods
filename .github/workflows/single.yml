@@ -18,16 +18,17 @@ on:
 
 permissions: write-all
 concurrency:
-  group: ${{inputs.platform}}-${{inputs.name}}
+  # group: ${{inputs.platform}}-${{inputs.name}}
+  group: ${{inputs.platform}}
   cancel-in-progress: false
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@main
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@main
         id: cache-ffmpeg
         with:
           path: |
@@ -45,7 +46,7 @@ jobs:
           tar --extract --strip-components=1 --file /tmp/ffmpeg.tar.gz -C ~/.local/bin/ --wildcards '*/ffmpeg' '*/ffprobe'
           fi
 
-      - uses: mamba-org/setup-micromamba@v1
+      - uses: mamba-org/setup-micromamba@main
         name: Setup micromamba environment
         with:
           micromamba-version: latest
@@ -74,9 +75,10 @@ jobs:
           DEFAULT_TG_TARGET: ${{ secrets.DEFAULT_TG_TARGET }}
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
-          YTDLP_PROXY: ${{ secrets.YTDLP_PROXY }}
+          VIDEOGRAM_YTDLP_PROXY: ${{ secrets.YOUTUBE_PROXY }}
         shell: micromamba-shell {0}
         run: |-
+          pip list
           python podsync/youtube.py --name ${{inputs.name}} --config config/youtube.json
           python podsync/clean-up.py --name ${{inputs.name}} --config config/youtube.json --keep 200
 
@@ -100,8 +102,9 @@ jobs:
           VIDEOGRAM_TG_SESSION_STRING: ${{ secrets.VIDEOGRAM_TG_SESSION_STRING }}
           VIDEOGRAM_YT_LANG: ${{ secrets.VIDEOGRAM_YT_LANG }}
           RSSHUB_URL: ${{ secrets.RSSHUB_URL }}
-          YTDLP_PROXY: ${{ secrets.YTDLP_PROXY }}
+          VIDEOGRAM_YTDLP_PROXY: ${{ secrets.BILIBILI_PROXY }}
         shell: micromamba-shell {0}
         run: |-
+          pip list
           python podsync/bilibili.py --name ${{inputs.name}} --config config/bilibili.json
           python podsync/clean-up.py --name ${{inputs.name}} --config config/bilibili.json --keep 200

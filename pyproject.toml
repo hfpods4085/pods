@@ -10,7 +10,7 @@ version = "0.1.0"
 dateparser = ">=1.2.0"
 feedparser = ">=6.0.11"
 python = "^3.12"
-videogram = { url = "https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.4.6.tar.gz" }
+videogram = { url = "https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.4.8.tar.gz" }
 xmltodict = ">=0.13.0"
 
 [tool.poetry.group.dev.dependencies]

@@ -11,7 +11,6 @@ from podcast import generate_pod_header, generate_pod_item
 from utils import load_xml, save_xml
 from videogram.utils import load_json, save_json
 from videogram.videogram import download, sync
-from yt_dlp.utils import YoutubeDLError
 
 
 class PodSync:
@@ -91,8 +90,8 @@ class PodSync:
                     use_cookie=use_cookie,
                     clean=False,
                 )
-        except YoutubeDLError as e:
-            logger.error(e.msg)
+        except Exception as e:  # noqa: BLE001
+            logger.error(e)
             return res
         res["download_info"] = download_info
         return res

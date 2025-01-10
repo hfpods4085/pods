@@ -10,4 +10,4 @@ dependencies:
   - python=3.12.7
   - xmltodict=0.14.2
   - pip:
-      - https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.4.6.tar.gz
+      - https://github.com/hfpods4085/pods/releases/download/videogram/videogram-0.4.8.tar.gz
